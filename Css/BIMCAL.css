@@ -1,0 +1,323 @@
+
+
+.containerBMI {
+    width: 97%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Calculator Section */
+.calculator-section {
+    
+    padding: 20px;
+    border-radius: 10px;
+   
+    margin-bottom: 30px;
+}
+.calculator-section h1{
+    color: #1C6EA4;
+    font-size: 35px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.calculator-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: #e0e0e0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tab.active {
+    background: #1C6EA4;
+    color: white;
+}
+.BMI{
+    display: flex;
+    flex-direction: row;
+}
+
+.form-section {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.gender {
+    display: flex;
+    gap: 15px;
+}
+
+.HeightDouble {
+    display: flex;
+    gap: 10px;
+}
+.metricInputs{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.metricInputs input{
+    width: 287px;
+}
+.HeightDouble input {
+    flex: 1;
+}
+
+.btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#calcBtn {
+    background: #1C6EA4;
+    color: white;
+}
+
+#clearBtn {
+    background: #888;
+    color: white;
+}
+
+.result {
+    flex-basis: 50%;
+    margin-top: 20px;
+    text-align: left;
+    font-size: 1.2em;
+    padding-left: 20px;
+}
+
+.bmi-value {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.status {
+    color: #1C6EA4;
+    font-weight: bold;
+}
+
+/* Article Section */
+.article-section {
+   
+    padding: 20px;
+    border-radius: 10px;
+    
+}
+
+/* ===== Headings ===== */
+.HEADING {
+  color: #1C6EA4;
+  border-left: 5px solid #3498db;
+  padding-left: 12px;
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* ===== SubHeadings ===== */
+.SubHeading {
+  position: relative;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a5276;
+  margin: 20px 0 10px;
+  padding-left: 12px;
+}
+
+.SubHeading::before {
+  content: "◆";  /* Decorative icon */
+  color: #3498db;
+  position: absolute;
+  left: -15px;
+  font-size: 14px;
+}
+
+.HeadH4 {
+  color: #1a5276;
+  margin: 15px 0 5px;
+  font-size: 16px;
+}
+
+/* ===== Paragraphs ===== */
+.PARA {
+  padding-top: 8px;
+  padding-left: 5px;
+  font-size: 16px;
+  color: #555;
+}
+.PARA span{
+  color: #3498db;
+font-weight: bold;
+  margin-right: 6px;
+}
+
+/* ===== List Sections ===== */
+.listtopics {
+  margin: 15px 0;
+  padding-left: 1.2rem;
+}
+
+.listtopics p {
+  padding-left: 0.5rem;
+  color: #444;
+  font-size: 15px;
+}
+
+.listtopics span {
+  color: #3498db;
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+.listtopics ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.listtopics ul li {
+  margin: 8px 0;
+  padding-left: 25px;
+  position: relative;
+  font-size: 15px;
+  color: #555;
+}
+
+
+
+
+/* ===== Tables ===== */
+table {
+  width: 97%;
+  margin-top: 15px;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  background: #fff;
+}
+
+th, td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background-color: #3498db;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+
+tr:hover {
+  background-color: #eaf6ff;
+  transition: 0.3s ease;
+}
+
+/* Category Colors */
+.underweight { color: #2980b9; font-weight: bold; }
+.normal { color: #27ae60; font-weight: bold; }
+.overweight { color: #e67e22; font-weight: bold; }
+.obese1 { color: #e74c3c; font-weight: bold; }
+.obese2 { color: #c0392b; font-weight: bold; }
+.obese3 { color: #8e44ad; font-weight: bold; }
+
+/* ===== Conclusion Box ===== */
+.conclusion {
+  background: #f4faff;
+  border-left: 5px solid #3498db;
+  padding: 15px 20px;
+  margin-top: 25px;
+  
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width:1024px) {
+  .calculator-section h1{
+    color: #1C6EA4;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+}
+@media (max-width: 768px) {
+  .BMI{
+    display: flex;
+    flex-direction: column;
+}
+  .containerBMI {
+    padding: 15px;
+    margin: 20px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .HEADING {
+    font-size: 20px;
+  }
+}
+@media only screen and  (max-width:400px)  {
+ .metricInputs{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.containerBMI {
+    padding:0 px;
+    margin: 0px;
+  }
+  .listtopics ul li {
+  margin: 8px 0;
+  padding-left: 1px;
+  position: relative;
+  font-size: 15px;
+  color: #555;
+}
+}

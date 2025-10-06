@@ -1,0 +1,356 @@
+/* Main Calculator Container */
+.calculator {
+    width: 809px;
+    
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    
+    margin-top: 50px;
+    margin-left: 60px;
+    font-family: "Segoe UI", sans-serif;
+}
+.cal{
+    display: flex;
+}
+.home-section{
+    width: 100%;
+    height: 200vh;
+}
+.calculator-def{
+    height: 100vh;
+}
+/* Display Section */
+.display-container {
+    padding: 10px;
+  
+    border-bottom: 2px solid #3d3d52;
+    margin: 1px 25px;
+}
+
+.display {
+    width: 100%;
+    height: 45px;
+    margin-bottom: 10px;
+    padding: -1 15px;
+    
+    border: none;
+    border-radius: 10px 10px 0px 0px;
+    color: #000000;
+    font-size: 18px;
+    text-align: right;
+    outline: none;
+    position: relative;
+    top: 10px;
+}
+
+.result {
+    width: 100%;
+    height: 65px;
+    padding: -1 15px;
+
+    border: none;
+    border-radius: 0px 0px 10px 10px; 
+    color: #000000;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: right;
+    outline: none;
+}
+
+/* Controls (Degree/Radian Selector) */
+.controls {
+    display: flex;
+    padding: 12px 20px;
+    background: #2a2a3d;
+    border-bottom: 2px solid #3d3d52;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.mode-selector span {
+    color: #010101;
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.mode-option {
+    display: flex;
+    
+    align-items: center;
+    color: #000000;
+    cursor: pointer;
+    font-size: 14px;
+    padding-left: 18px;
+}
+
+.mode-option input {
+    margin-right: 6px;
+}
+
+/* Layout */
+.roe {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-side, .Right-side {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    row-gap: 9px;
+    flex: 1;
+    padding: 20px;
+}
+
+
+/* Button Grid */
+.buttons {
+    display: flex;  
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* General Button Style */
+.btn {
+    height: 35px;
+    width: 65px;
+    border: none;
+    border-radius: 12px;
+    background: #2f2f44;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 7px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.btn:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+    color: #fff;
+    background-color: #3498db;
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Button Categories */
+.btn-operation {
+    background: #ffffff;
+    color: #3498db;
+}
+
+.btn-function {
+    background: #3498db;
+    color: #fff;
+}
+
+.btn-number {
+    background: #44445f;
+}
+
+.btn-equals {
+    background: #2ecc71;
+    color: #111;
+    font-weight: bold;
+}
+
+.btn-clear {
+    background: #e74c3c;
+    font-weight: bold;
+}
+
+.btn-memory {
+    background: #f39c12;
+    font-weight: bold;
+}
+
+
+.SearchMain{
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    position: relative;
+    top: 5rem;
+    left: 3rem;
+}
+
+.calculator-def {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.Divider {
+  flex: 1 1 22%; /* 4 equal columns */
+  padding: 1rem;
+}
+
+.Img-Cal {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  position: relative;
+  left: 4rem;
+}
+
+.Divider h2 {
+  font-size: 20px;
+  color: green;
+  margin: 10px 0;
+}
+
+.Divider ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center; /* align list left */
+}
+
+.Divider li {
+  margin: 6px 0;
+}
+
+.Divider li a {
+  text-decoration: none;
+  color: #004080; /* blue like screenshot */
+  font-size: 14px;
+}
+
+.Divider li a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+@media only screen and (max-width: 1024px) {
+  .btn{
+    width: 47px;
+    height: 30px;
+  }
+  .calculator{
+    width: 650px;
+        margin-top: 37px;
+    margin-left: 34px;
+  }
+  .SearchMain{
+    left: 30px;
+  }
+}
+
+@media only screen and (max-width: 786px) and (min-width:400px) {
+  .btn{
+    width: 37px;
+    height: 28px;
+    font-size: 12px;
+  }
+  .mode-option {
+    padding-left: 3px;
+}
+.calculator{
+    width: 497px;
+        margin-top: 27px;
+    margin-left: 24px;
+  }
+.SearchMain{
+    left: 30px;
+  }
+  .left-side, .Right-side {
+
+    padding: 10px;
+}
+.Img-Cal {
+    height: 120px;
+    width: 120px;
+    left: 1rem;
+}
+
+}
+@media only screen and  (max-width:425px) {
+ .SearchMain{
+    left: 30px;
+    display: none;
+  }
+      .btn {
+        width: 57px;
+        height: 33px;
+    }
+  .calculator-def {
+    display: flex
+;
+flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    margin-top: 4rem;
+    text-align: left;
+}
+.Img-Cal {
+    height: 100px;
+    width: 100px;
+    left: 30px;
+}
+.calculator
+ {
+        width: 340px;
+        margin-top: 22px;
+        margin-left: 22px;
+       
+    }
+    .Divider {
+    flex: 1 1 17%;
+    padding: 0.7rem;
+}
+.Divider ul{
+    text-align: left;
+}
+}
+
+@media only screen and  (max-width:375px) {
+ .SearchMain{
+    left: 30px;
+    display: none;
+  }
+      .btn {
+        width: 57px;
+        height: 33px;
+    }
+  .calculator-def {
+    display: flex
+;
+flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    margin-top: 4rem;
+    text-align: left;
+}
+.Img-Cal {
+    height: 100px;
+    width: 100px;
+    left: 30px;
+}
+.calculator
+ {
+        width: 325px;
+        margin-top: 16px;
+        margin-left: 16px;
+       
+    }
+    .Divider {
+    flex: 1 1 17%;
+    padding: 0.7rem;
+}
+.Divider ul{
+    text-align: left;
+}
+}

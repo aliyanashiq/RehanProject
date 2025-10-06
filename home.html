@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Css/Home.css" />
+    <title>Scientific Calculator</title>
+  </head>
+
+  <body>
+    <div class="home-section">
+        <div class="cal">
+      <div class="calculator">
+        <div class="display-container">
+          <input
+            type="text"
+            class="display"
+            id="calculation"
+            readonly
+            placeholder="Calculation"
+          />
+          <input
+            type="text"
+            class="result"
+            id="result"
+            readonly
+            placeholder="0"
+          />
+        </div>
+
+        <div class="buttons">
+          <div class="Right-side">
+            <div class="roe">
+              <button class="btn btn-function" data-func="sin">sin</button>
+              <button class="btn btn-function" data-func="cos">cos</button>
+              <button class="btn btn-function" data-func="tan">tan</button>
+              <div class="mode-option">
+                <input type="radio" id="deg" name="angle" checked />
+                <label for="deg">Deg</label>
+              </div>
+              <div class="mode-option">
+                <input type="radio" id="rad" name="angle" />
+                <label for="rad">Rad</label>
+              </div>
+            </div>
+            <div class="roe">
+              <button class="btn btn-function" data-func="sin-1">
+                sin<sup>-1</sup>
+              </button>
+              <button class="btn btn-function" data-func="cos-1">
+                cos<sup>-1</sup>
+              </button>
+              <button class="btn btn-function" data-func="tan-1">
+                tan<sup>-1</sup>
+              </button>
+              <button class="btn btn-function" data-func="pi">π</button>
+              <button class="btn btn-function" data-func="e">e</button>
+            </div>
+            <div class="roe">
+              <button class="btn btn-function" data-func="x^y">
+                x<sup>y</sup>
+              </button>
+              <button class="btn btn-function" data-func="x^3">
+                x<sup>3</sup>
+              </button>
+              <button class="btn btn-function" data-func="x^2">
+                x<sup>2</sup>
+              </button>
+              <button class="btn btn-function" data-func="e^x">
+                e<sup>x</sup>
+              </button>
+              <button class="btn btn-function" data-func="10^x">
+                10<sup>x</sup>
+              </button>
+            </div>
+            <div class="roe">
+              <button class="btn btn-function" data-func="y√x">
+                <sup>y</sup>√x
+              </button>
+              <button class="btn btn-function" data-func="3√x">
+                <sup>3</sup>√x
+              </button>
+              <button class="btn btn-function" data-func="√x">√x</button>
+              <button class="btn btn-function" data-func="ln">ln</button>
+              <button class="btn btn-function" data-func="log">log</button>
+            </div>
+            <div class="roe">
+              <button class="btn btn-function" data-op="(">(</button>
+              <button class="btn btn-function" data-op=")">)</button>
+              <button class="btn btn-function" data-func="1/x">1/x</button>
+              <button class="btn btn-function" data-func="%">%</button>
+              <button class="btn btn-function" data-func="n!">n!</button>
+            </div>
+          </div>
+          <div class="left-side">
+            <div class="roe">
+              <button class="btn btn-operation" data-op="7">7</button>
+              <button class="btn btn-operation" data-op="8">8</button>
+              <button class="btn btn-operation" data-op="9">9</button>
+              <button class="btn btn-operation" data-op="+">+</button>
+              <button class="btn btn-clear" data-func="back">Back</button>
+            </div>
+            <div class="roe">
+              <button class="btn btn-operation" data-op="4">4</button>
+              <button class="btn btn-operation" data-op="5">5</button>
+              <button class="btn btn-operation" data-op="6">6</button>
+              <button class="btn btn-operation" data-op="-">-</button>
+              <button class="btn btn-memory" data-func="ans">Ans</button>
+            </div>
+            <div class="roe">
+              <button class="btn btn-operation" data-op="1">1</button>
+              <button class="btn btn-operation" data-op="2">2</button>
+              <button class="btn btn-operation" data-op="3">3</button>
+              <button class="btn btn-operation" data-op="*">×</button>
+              <button class="btn btn-memory" data-func="m+">M+</button>
+            </div>
+            <div class="roe">
+              <button class="btn btn-operation" data-op="0">0</button>
+              <button class="btn btn-operation" data-op=".">.</button>
+              <button class="btn btn-operation" data-func="exp">EXP</button>
+              <button class="btn btn-operation" data-op="/">/</button>
+              <button class="btn btn-memory" data-func="m-">M-</button>
+            </div>
+            <div class="roe">
+              <button class="btn btn-operation" data-func="±">±</button>
+              <button class="btn btn-operation" data-func="rnd">RND</button>
+              <button class="btn btn-clear" data-func="ac">AC</button>
+              <button class="btn btn-equals" data-func="=">=</button>
+              <button class="btn btn-memory" data-func="mr">MR</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="SearchMain">
+        <!-- From Uiverse.io by sudhucodes -->
+         <label for=""> Free Online Calculator </label>
+        
+      <div
+        class="flex items-center border lg:w-[15rem] md:w-[13rem] focus-within:border-indigo-500 transition duration-300 pr-3 gap-2 bg-white border-gray-500/30 h-[46px] rounded-[5px] overflow-hidden"
+      >
+     
+        <input
+          type="text"
+          placeholder="Search for products"
+          class="w-full h-full pl-4 outline-none placeholder-gray-500 text-sm"
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          x="0px"
+          y="0px"
+          width="22"
+          height="22"
+          viewBox="0 0 30 30"
+          fill="#6B7280"
+        >
+          <path
+            d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"
+          ></path>
+        </svg>
+      </div>
+      </div>
+    </div>
+    <div class="calculator-def">
+    <div class="Divider">
+        <img src="./Pic/What-is-Financial-Management.jpg.optimal.jpg" class="Img-Cal" alt="">
+        <h2>Financial Calculators</h2>
+        <ul>
+            <li><a href="#">Interest Calculator</a></li>
+        </ul>
+    </div>
+    <div class="Divider">
+        <img src="./Pic/fitness-and-health-poster-vector-20751807.jpg" class="Img-Cal" alt="">
+        <h2>Fitness & Health Calculators</h2>
+        <ul>
+            <li><a href="#/BIMCAL">BMI Calculator</a></li>
+            <li><a href="#">Calorie Calculator</a></li>
+        </ul>
+    </div>
+    <div class="Divider">
+        <img src="./Pic/Math.jpg" class="Img-Cal" alt="">
+        <h2>Math Calculators</h2>
+        <ul>
+
+        </ul>
+    </div>
+    <div class="Divider">
+        <img src="./Pic/measurement-tools-abstract-linear-concept-layout-with-headline-devices-for-measuring-minimalistic-idea-weight-length-check-thin-line-graphic-drawings-isolated-contour-icons-for-background-vector.jpg" class="Img-Cal" alt="">
+        <h2>Other Calculators</h2>
+        <ul>
+            <li><a href="#">Fuel Consumption Calculator</a></li>
+            <li><a href="#">Date Calculator</a></li>
+        </ul>
+    </div>
+</div>
+
+
+    </div>
+  </body>
+</html>
