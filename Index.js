@@ -1,86 +1,81 @@
-// ✅ Routes
-// ✅ Define routes using hash
+// ✅ ROUTES
 const routes = {
   "#/": "home.html",
-
+  
   "#/finance": "finance.html",
   "#/fitness": "fitness.html",
   "#/math": "math.html",
   "#/other": "other.html",
   "#/BIMCAL": "BIMCAL.html",
-
-  404: "404.html", // fallback
+  "#/FuelConsumption": "FuelConsumption.html",
+  404: "404.html",
 };
 
-// ✅ Router function
+// ✅ ROUTER HANDLER
 const Routermain = (event) => {
   event.preventDefault();
   const href = event.target.getAttribute("href");
-  window.location.hash = href; // Update hash
+  window.location.hash = href;
 };
 
-// ✅ Handle location
+// ✅ LOAD PAGE CONTENT
 const handellocation = async () => {
-  const path = window.location.hash || "#/"; // Default page = home
+  const path = window.location.hash || "#/";
   const route = routes[path] || routes[404];
 
   try {
     const html = await fetch(route).then((res) => res.text());
     document.getElementById("Content").innerHTML = html;
+
+    // ✅ Reinitialize page-specific JS
+    initPageScripts(path);
   } catch (err) {
-    document.getElementById("Content").innerHTML =
-      "<h2>Error loading page.</h2>";
+    document.getElementById("Content").innerHTML = "<h2>Error loading page.</h2>";
   }
 };
 
-// ✅ Handle back/forward
 window.addEventListener("hashchange", handellocation);
-
-// ✅ First load
 handellocation();
-
-// ✅ Attach globally for onclick
 window.route = Routermain;
 
-// menu open and close function
-const menu = document.getElementById("mobile-menu"); //defive menu that open and close
-const openBtn = document.getElementById("OpenMenu"); //define open button
-const closeBtn = document.getElementById("closeMenu"); // defuine close
+// ✅ MOBILE MENU
+const menu = document.getElementById("mobile-menu");
+const openBtn = document.getElementById("OpenMenu");
+const closeBtn = document.getElementById("closeMenu");
 
-// open gunctiom
-const openMenu = () => {
-  menu.classList.remove("hidden");
-};
-// close menu
-const closeMenu = () => {
-  menu.classList.add("hidden");
-};
+const openMenu = () => menu.classList.remove("hidden");
+const closeMenu = () => menu.classList.add("hidden");
 
-openBtn.addEventListener("click", openMenu);
-closeBtn.addEventListener("click", closeMenu);
+if (openBtn && closeBtn) {
+  openBtn.addEventListener("click", openMenu);
+  closeBtn.addEventListener("click", closeMenu);
+}
 
-// with help of this user select menu item menu close auto
 window.selectMenu = function (event) {
   event.preventDefault();
   closeMenu();
-  Routermain(event); // your routing logic
+  Routermain(event);
 };
 
-// BMI Calculator JS
-document.addEventListener("DOMContentLoaded", function () {
-  // Select all elements
+// ✅ PAGE-SPECIFIC SCRIPT INITIALIZER
+function initPageScripts(path) {
+  if (path === "#/BIMCAL") initBMICalculator();
+  if (path === "#/FuelConsumption") calculate();
+}
+
+// ✅ BMI CALCULATOR
+function initBMICalculator() {
   const metBtn = document.getElementById("metBtn");
   const usBtn = document.getElementById("usBtn");
   const metricInputs = document.getElementById("metricInputs");
   const usInputs = document.getElementById("usInputs");
   const calcBtn = document.getElementById("calcBtn");
   const clearBtn = document.getElementById("clearBtn");
-  
   const bmiValue = document.querySelector(".bmi-value");
   const statusDiv = document.querySelector(".status");
 
-  // Toggle between metric and US units
-if (usBtn && metBtn && calcBtn && clearBtn) {
+  if (!(usBtn && metBtn && calcBtn && clearBtn)) return;
+
   usBtn.addEventListener("click", function () {
     usBtn.classList.add("active");
     metBtn.classList.remove("active");
@@ -99,21 +94,18 @@ if (usBtn && metBtn && calcBtn && clearBtn) {
 
   calcBtn.addEventListener("click", calculateBMI);
   clearBtn.addEventListener("click", clearResults);
-}
-
 
   function calculateBMI() {
     let height, weight;
 
     if (metBtn.classList.contains("active")) {
-      height = parseFloat(document.getElementById("height").value) / 100; // cm to m
+      height = parseFloat(document.getElementById("height").value) / 100;
       weight = parseFloat(document.getElementById("weight").value);
     } else {
       const feet = parseFloat(document.getElementById("heightFeet").value);
       const inches = parseFloat(document.getElementById("heightInches").value);
-      height = (feet * 12 + inches) * 0.0254; // inches to m
-      weight =
-        parseFloat(document.getElementById("weightLbs").value) * 0.453592; // lbs to kg
+      height = (feet * 12 + inches) * 0.0254;
+      weight = parseFloat(document.getElementById("weightLbs").value) * 0.453592;
     }
 
     if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
@@ -144,4 +136,145 @@ if (usBtn && metBtn && calcBtn && clearBtn) {
     document.getElementById("heightInches").value = "";
     document.getElementById("weightLbs").value = "";
   }
-});
+}
+
+
+
+// Fuel consuption
+
+document
+      .getElementById("calculateBtn")
+      .addEventListener("click", calculate);
+    document
+      .getElementById("clearBtn")
+      .addEventListener("click", clearFields);
+
+    document
+      .getElementById("distanceUnit")
+      .addEventListener("change", updatePlaceholders);
+    document
+      .getElementById("efficiencyUnit")
+      .addEventListener("change", updatePlaceholders);
+    document
+      .getElementById("priceUnit")
+      .addEventListener("change", updatePlaceholders);
+
+    // Update input placeholders dynamically
+    function updatePlaceholders() {
+      const distanceUnit = document.getElementById("distanceUnit").value;
+      const efficiencyUnit = document.getElementById("efficiencyUnit").value;
+      const priceUnit = document.getElementById("priceUnit").value;
+
+      document.getElementById("distance").placeholder =
+        distanceUnit === "km"
+          ? "Enter distance (km)"
+          : "Enter distance (miles)";
+
+      const effPlaceholder = {
+        mpg: "Enter efficiency (mpg)",
+        L100km: "Enter efficiency (L/100km)",
+        kml: "Enter efficiency (km/L)",
+        Lpermile: "Enter efficiency (L/mile)",
+      };
+      document.getElementById("efficiency").placeholder =
+        effPlaceholder[efficiencyUnit];
+
+      document.getElementById("fuelPrice").placeholder =
+        priceUnit === "liter"
+          ? "Enter price per liter"
+          : "Enter price per gallon";
+    }
+
+    // Calculation logic
+    function calculate() {
+      const distance = parseFloat(document.getElementById("distance").value);
+      const efficiency = parseFloat(
+        document.getElementById("efficiency").value
+      );
+      const fuelPrice = parseFloat(
+        document.getElementById("fuelPrice").value
+      );
+      const distanceUnit = document.getElementById("distanceUnit").value;
+      const efficiencyUnit = document.getElementById("efficiencyUnit").value;
+      const priceUnit = document.getElementById("priceUnit").value;
+      const output = document.getElementById("output");
+
+      // Validate inputs
+      if (isNaN(distance) || isNaN(efficiency) || isNaN(fuelPrice)) {
+        output.innerHTML =
+          "<p style='color:#f87171;'>⚠️ Please fill in all fields correctly.</p>";
+        return;
+      }
+
+      // Convert distance to miles if needed
+      const distMiles =
+        distanceUnit === "km" ? distance * 0.621371 : distance;
+
+      // Convert all efficiency units to miles per gallon (mpg)
+      let mpg;
+      switch (efficiencyUnit) {
+        case "mpg":
+          mpg = efficiency;
+          break;
+        case "L100km":
+          mpg = 235.215 / efficiency;
+          break;
+        case "kml":
+          mpg = efficiency * 2.35215;
+          break;
+        case "Lpermile":
+          mpg = 235.215 / (efficiency * 100);
+          break;
+        default:
+          mpg = efficiency;
+      }
+
+      // Convert price to per gallon if given in per liter
+      const costPerGallon =
+        priceUnit === "liter" ? fuelPrice * 3.78541 : fuelPrice;
+
+      // Calculate fuel used (in gallons)
+      const gallonsUsed = distMiles / mpg;
+
+      // Convert fuel used to liters if needed
+      const fuelUsed =
+        priceUnit === "liter" ? gallonsUsed * 3.78541 : gallonsUsed;
+
+      // Determine the correct fuel unit
+      const fuelUnit = priceUnit === "liter" ? "liters" : "gallons";
+
+      // Total cost
+      const totalCost = gallonsUsed * costPerGallon;
+
+      // Display results
+      let resultHTML = `
+      <div style="display:flex; flex-direction:row; gap:6px; line-height:1.6;">
+        <p>🚗 Trip Distance: <strong>${distance}</strong> ${distanceUnit}</p>
+        <p>⛽ Fuel Used: <strong>${fuelUsed.toFixed(2)}</strong> ${fuelUnit}</p>
+        <p>💰 Total Cost: <strong>$${totalCost.toFixed(2)}</strong></p>
+      </div>
+      <hr style="border: 1px solid #38bdf8; margin: 10px 0;">
+      <p>📊 Summary:</p>
+      <p>
+        The total distance is <strong>${distance}</strong> ${distanceUnit}, 
+        fuel efficiency is <strong>${efficiency}</strong> ${efficiencyUnit}, 
+        and fuel price is <strong>$${fuelPrice}</strong> per ${priceUnit}.
+        <br/>💰 Estimated total trip cost: <strong>$${totalCost.toFixed(
+        2
+      )}</strong>.
+      </p>
+    `;
+
+      output.innerHTML = resultHTML;
+    }
+
+    // Clear all fields
+    function clearFields() {
+      document.getElementById("distance").value = "";
+      document.getElementById("efficiency").value = "";
+      document.getElementById("fuelPrice").value = "";
+      document.getElementById("output").innerHTML = "";
+    }
+
+    // Initialize placeholders on load
+    updatePlaceholders();

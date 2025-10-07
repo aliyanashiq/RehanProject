@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./Css/FuelConsumption.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="calculator-container">
+    <h1>Fuel Consumption Calculator: How It Works and Why You Need It</h1>
+
+    <div class="Fuel-Cal-Block">
+      <div class="Dist-Cal">
+        <label>Trip Distance</label>
+        <div class="form-section">
+          <input type="number" id="distance" placeholder="Enter distance" />
+          <select id="distanceUnit">
+            <option value="miles">miles</option>
+            <option value="km">kilometers</option>
+          </select>
+        </div>
+        <label>Fuel Efficiency</label>
+        <div class="form-section">
+          <input type="number" id="efficiency" placeholder="Enter efficiency" />
+          <select id="efficiencyUnit">
+            <option value="mpg">miles per gallon (mpg)</option>
+            <option value="L100km">liters per 100 km</option>
+            <option value="kml">kilometers per liter</option>
+            <option value="Lpermile">liters per mile</option>
+          </select>
+        </div>
+        <label>Fuel Price</label>
+        <div class="form-section">
+          <input type="number" id="fuelPrice" placeholder="Enter price" />
+          <select id="priceUnit">
+            <option value="gallon">per gallon</option>
+            <option value="liter">per liter</option>
+          </select>
+        </div>
+        <div class="button-group">
+          <button id="calculateBtn">Calculate</button>
+          <button id="clearBtn" class="clear">Clear</button>
+        </div>
+      </div>
+      <div id="output" class="result-text"></div>
+    </div>
+    <section class="article-section">
+      <h2 class="HEADING">0-Second Grab</h2>
+      <p class="PARA">
+        A fuel consumption calculator shows you in seconds how much fuel your
+        car actually burns per kilometre or per trip and what that means in
+        real costs.
+        <br />
+        Here you’ll get:
+      </p>
+      <p class="PARA">
+        <span>→</span>The exact formulas explained clearly (no hidden steps),
+        <br />
+        <span>→</span>a commuting and trip-planning mode (daily drives,
+        weekend trips, long-distance travel),
+        <br />
+        <span>→</span>a free embed widget you can add to your website, blog,
+        or planning documents.
+      </p>
+      <h2 class="HEADING">How This Fuel Consumption Calculator Works</h2>
+      <p class="PARA">
+        Most online tools hide the formulas behind the calculator interface.
+        Here are the transparent equations:
+      </p>
+      <div class="listtopics">
+        <h3 class="SubHeading">Metric Formula (L/100 km)</h3>
+        <span>L/100 km = (litres used ÷ kilometres driven) × 100</span>
+        <p class="PARA">
+          Divide the litres you poured in by the kilometres you just drove,
+          then multiply by 100. The answer tells you how many litres your car
+          needs to travel 100 kilometres.
+        </p>
+        <h3 class="SubHeading">Imperial Formula (MPG)</h3>
+        <span>MPG = miles ÷ gallons</span>
+        <p class="PARA">
+          Divide the miles you drove by the gallons you added. The answer
+          tells you how many miles your car can travel on one gallon of fuel.
+        </p>
+        <h3 class="SubHeading">Cost per Kilometre Formula</h3>
+        <span>Cost/km = (litres used ÷ km) × price per litre</span>
+        <p class="PARA">
+          Divide litres by kilometres, then multiply by the price you paid per
+          litre. The answer is the exact cost of driving one kilometre –
+          perfect for splitting bills with friends or invoicing clients.
+        </p>
+        <h3 class="SubHeading">Example</h3>
+        <p class="PARA">
+          <span>→</span>Distance: 120 km
+          <br />
+          <span>→</span>Fuel used: 8.5 L
+          <br />
+          <span>→</span>Fuel price: 1.85 zł/L
+        </p>
+        <p class="PARA">
+          Step 1: L/100 km = (8.5 ÷ 120) × 100 = <b>7.08 L/100 km</b>
+          <br />
+          Step 2: Total trip cost = 8.5 × 1.85 = <b>15.73 zł</b>
+          <br />
+          Step 3: Cost per km = 15.73 ÷ 120 = <b>0.13 zł/km</b>
+          <br />
+        </p>
+        <p class="PARA">
+          This calculation shows more than just numbers on a screen. It tells
+          you that your car consumes about 7 litres of fuel per 100 km, which
+          is a clear indicator of efficiency. At the same time, you see the
+          true cost of your journey in this case, 15.73 zł for 120 km.
+          Breaking it down further, each kilometre costs you 0.13 zł, a figure
+          that can be very useful when planning your monthly fuel budget,
+          splitting costs with passengers, or comparing the running expense of
+          different cars.
+        </p>
+      </div>
+      <h2 class="HEADING">What Is a Fuel Consumption Calculator?</h2>
+      <div class="listtopics">
+        <p class="PARA">
+          A fuel consumption calculator is a simple but powerful tool that
+          converts three basic numbers
+          <br />
+          <span>→</span> <b>distance travelled, </b>
+          <br />
+          <span>→</span> <b>fuel consumed,</b>
+          <br />
+          <span>→</span> <b>price per litre</b>
+          <br />
+          into useful results such as:
+          <br />
+          <span>→</span><b>Fuel efficiency:</b> shown in litres per 100
+          kilometres (L/100 km) or miles per gallon (MPG),
+          <br />
+          <span>→</span> <b>Total trip cost,</b>
+          <br />
+          <span>→</span><b>Monthly and annual spending</b> estimates based on
+          your driving habits.
+        </p>
+        <h3 class="SubHeading">Why It Matters</h3>
+        <p class="PARA">
+          <span>→</span><b>Budget planning:</b> Essential for students,
+          families, or professionals who want to track monthly vehicle costs.
+          <br />
+          <span>→</span> <b>Travel planning:</b> Helps drivers estimate trip
+          expenses before long journeys or road trips.
+          <br />
+          <span>→</span><b>Eco-awareness:</b> Encourages efficient driving and
+          fuel-saving habits.
+        </p>
+      </div>
+      <p class="PARA">
+        Knowing exactly how much your car consumes allows you to make informed
+        choices, compare vehicles, and even track how changes in driving style
+        affect costs.
+      </p>
+      <h2 class="HEADING">Where Standard Calculators Stop</h2>
+      <p class="PARA">
+        Most basic calculators focus only on single trips. They often ignore
+        important real-world situations such as:
+      </p>
+      <table>
+        <tr>
+          <th>Missing Factor</th>
+          <th>Typical Calculator</th>
+          <th>Real-world Use Case</th>
+          <th>Cost Error if Ignored</th>
+        </tr>
+        <tr>
+          <td>Car-pooling</td>
+          <td>Not included</td>
+          <td>Several people share fuel cost</td>
+          <td>Entire trip appears more expensive</td>
+        </tr>
+        <tr>
+          <td>Daily commute</td>
+          <td>Treated as one trip</td>
+          <td>Small daily drives repeated 250+ times a year</td>
+          <td>Thousands of kilometres uncounted</td>
+        </tr>
+        <tr>
+          <td>Return journey</td>
+          <td>Often one-way only</td>
+          <td>Most trips include return distance</td>
+          <td>Costs underestimated by ~50%</td>
+        </tr>
+        <tr>
+          <td>Driving efficiency</td>
+          <td>Not included</td>
+          <td>Fuel-efficient driving reduces usage</td>
+          <td>Missed savings opportunities</td>
+        </tr>
+      </table>
+      <p class="PARA">
+        Without these adjustments, you may underestimate your true fuel
+        expenses significantly.
+      </p>
+      <h2 class="HEADING">Enhanced Mode – Extra Features</h2>
+      <p class="PARA">
+        To make fuel tracking more realistic, advanced calculators add
+        practical options:
+      </p>
+      <table>
+        <tr>
+          <th>Feature</th>
+          <th>What it asks</th>
+          <th>What it does</th>
+        </tr>
+        <tr>
+          <td>Trip type</td>
+          <td>Daily commute, business trip, holiday travel</td>
+          <td>Multiplies trips automatically</td>
+        </tr>
+        <tr>
+          <td>Car-pool</td>
+          <td>Number of passengers</td>
+          <td>Divides cost per person</td>
+        </tr>
+        <tr>
+          <td>Eco-driving toggle</td>
+          <td>If efficient driving habits are applied</td>
+          <td>Reduces fuel consumption estimate</td>
+        </tr>
+        <tr>
+          <td>Return trip</td>
+          <td>Yes/No</td>
+          <td>Doubles distance automatically</td>
+        </tr>
+      </table>
+      <h3 class="SubHeading">Example – Family Trip</h3>
+      <p class="PARA">
+        <span>→</span>One-way distance: 180 km
+        <br />
+        <span>→</span>Return: Yes → 360 km total
+        <br />
+        <span>→</span>Car-pool: 3 passengers sharing costs
+        <br>
+        <span>→</span>Car efficiency: 6.5 L/100 km
+        <br>
+        <span>→</span>Eco-driving toggle: ON → 5.85 L/100 km
+        <br>
+        <span>→</span>Fuel price: 1.80 zł/L
+        <br>
+      <h4 class="HeadH4"><b>Example 1:</b></h4>
+      <span>1.</span> Fuel required = (5.85 ÷ 100) × 360 = 21.06 L
+      <br>
+      <span>2.</span> Total cost = 21.06 × 1.80 = 37.91 zł
+      <br>
+      <span>3.</span> Per-person cost = 37.91 ÷ 3 = 12.64 zł each
+      </p>
+      <p class="PARA">Car-pooling and eco-driving make trips cheaper and more sustainable.
+      </p>
+      <h2 class="HEADING">Quick-Look Tables
+      </h2>
+      <div class="listtopics">
+        <h3 class="SubHeading">Table A – Fuel cost per 100 km (fuel price = 1.80 zł/L)</h3>
+        <table>
+          <tr>
+            <th>L/100 km</th>
+            <th>Cost/100 km</th>
+            <th>With Eco-driving (-10%)</th>
+          </tr>
+          <tr>
+            <td>5.0 L</td>
+            <td>9.00 zł</td>
+            <td>8.10 zł</td>
+          </tr>
+          <tr>
+            <td>6.5 L</td>
+            <td>11.70 zł</td>
+            <td>10.53 zł</td>
+          </tr>
+          <tr>
+            <td>8.0 L</td>
+            <td>14.40 zł</td>
+            <td>12.96 zł</td>
+          </tr>
+          <tr>
+            <td>10.0 L</td>
+            <td>18.00 zł</td>
+            <td>16.20 zł</td>
+          </tr>
+        </table>
+        <h3 class="SubHeading">Table B – Annual commuter cost (20 km round-trip × 250 working days)</h3>
+        <table>
+          <tr>
+            <th>L/100 km</th>
+            <th>Normal yearly cost</th>
+            <th>With Eco-driving</th>
+            <th>Saving</th>
+          </tr>
+          <tr>
+            <td>6.5 L</td>
+            <td>585 zł</td>
+            <td>526 zł</td>
+            <td>59 zł</td>
+          </tr>
+          <tr>
+            <td>8.0 L</td>
+            <td>720 zł</td>
+            <td>648 zł</td>
+            <td>72 zł</td>
+          </tr>
+          <tr>
+            <td>10.0 L</td>
+            <td>900 zł</td>
+            <td>810 zł</td>
+            <td>90 zł</td>
+          </tr>
+        </table>
+        <p class="PARA">These numbers highlight how small efficiency changes add up to major savings over a year.
+        </p>
+      </div>
+      <h2 class="HEADING">Step-by-Step User Guide</h2>
+      <p class="PARA">Using a fuel consumption calculator is straightforward.</p>
+      <div class="listtopics">
+        <b>1. Select units</b> → choose L/100 km (metric) or MPG (imperial).
+        <br>
+        <b>2. Enter distance</b> → for example, 120 km.
+        <br>
+
+        <b>3. Tick “Return trip” </b>if relevant.
+        <br>
+
+        <b>4. Input fuel used</b> → either from a recent refill or car’s display.
+
+        <br>
+        <b>5. Enter price per litre</b> → use current fuel station value.
+
+        <br>
+        <b>6. Optional settings</b> → car-pool passengers, eco-driving toggle, trip frequency.
+
+        <br>
+        <b>7. Click Calculate</b> → view efficiency, cost per trip, cost per km, and per passenger if applicable.
+        <br>
+
+        <b>8. Export or save results</b> → for budgeting, expense reports, or trip planning.
+      </div>
+      <h2 class="HEADING">Eco-Driving Tips</h2>
+      <p class="PARA">Adopting efficient driving habits can significantly reduce fuel consumption.</p>
+      <div class="listtopics">
+        <h3 class="SubHeading">Practical Checklist</h3>
+        <b><span>→</span> Check tyre pressure:</b> Slightly higher pressure can cut consumption by 2–3%.
+        <br>
+
+        <b><span>→</span> Maintain steady speed:</b> Driving at 50–60 km/h in top gear is often most efficient.
+        <br>
+
+        <b><span>→</span> Limit air conditioning use:</b> Turning it off below highway speeds can save ~5%.
+        <br>
+
+        <b><span>→</span> Anticipate braking:</b> Gentle deceleration saves energy.
+        <br>
+
+        <b><span>→</span> Remove unnecessary weight:</b> Roof racks, boxes, or heavy items increase drag and
+        consumption.
+        <br>
+
+        <b><span>→</span> Plan routes wisely:</b> Avoid unnecessary detours and peak-hour traffic when possible.
+
+      </div>
+      <p class="PARA">By combining a calculator with these tips, you can see and measure improvements directly.
+      </p>
+<div class="conclusion">
+          <h2 class="HEADING">Conclusion</h2>
+          <p>
+            A fuel consumption calculator isn’t just about crunching numbers. It's about turning everyday driving data into clear, practical insights. By knowing your fuel efficiency, trip costs, and yearly spending, you can plan smarter, budget better, and even adopt eco-driving habits that save money and reduce emissions. Whether you’re calculating the cost of a weekend getaway, splitting fuel with friends, or tracking your daily commute, this tool takes the guesswork out of driving. Small adjustments in your habits or even just measuring consistently  can make a noticeable difference over time.
+
+          </p>
+          
+        </div>
+    </section>
+    <h2 class="HEADING">Summary</h2>
+    <p class="PARA">Plug in three numbers once and you’ll never over-budget a drive again.</p>
+    <table>
+  <tr>
+    <th>Without Calculator</th>
+    <th>With Calculator</th>
+    <th>Benefit</th>
+  </tr>
+  <tr>
+    <td>Guessing trip cost</td>
+    <td>Exact cost per km & per trip</td>
+    <td>Budget certainty</td>
+  </tr>
+  <tr>
+    <td>Hard to budget</td>
+    <td>Clear yearly estimate</td>
+    <td>Plan ahead</td>
+  </tr>
+  <tr>
+    <td>Overlooking habits</td>
+    <td>Track eco-driving savings</td>
+    <td>Money back in pocket</td>
+  </tr>
+  <tr>
+    <td>Car-pool disputes</td>
+    <td>Fair cost per person</td>
+    <td>No arguments</td>
+  </tr>
+  <tr>
+    <td>Silent fuel creep</td>
+    <td>Real L/100 km visible</td>
+    <td>Catch inefficiency early</td>
+  </tr>
+</table>
+  </div>
+  <script>
+    // Event listeners
+    
+  </script>
+</body>
+
+</html>

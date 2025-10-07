@@ -1,80 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BMI Calculator – Check Your Body Mass Index Online</title>
-    <link rel="stylesheet" href="./Css/BIMCAL.css" />
-  </head>
 
-  <body>
-    <div class="containerBMI">
-      <!-- BMI Calculator Section -->
-        <section class="calculator-section">
-            <h1>BMI Calculator – Check Your Body Mass Index Online</h1>
-            <div class="tabs">
-                <button id="usBtn" class="tab active">US Units</button>
-                <button id="metBtn" class="tab ">Metric</button>
-            </div>
-            <div class="BMI">
-                <div class="form-section">
-                    <div>
-                        <label>Age</label>
-                        <input type="number" class="Age" id="age" placeholder="Enter age" />
-                    </div>
-                    <div>
-                        <label>Gender</label>
-                        <div class="gender">
-                            <label><input type="radio" name="gender" value="male" checked />
-                                Male</label>
-                            <label><input type="radio" name="gender" value="female" />
-                                Female</label>
-                        </div>
-                    </div>
-                    <!-- US input -->
-                    <div id="usInputs" style="display: none">
-                        <div class="HeightDouble">
-                            <label>Height</label>
-                            <input type="number" id="heightFeet" placeholder="Feet" />
-                            <input type="number" id="heightInches" placeholder="Inches" />
-                        </div>
-                        <div>
-                            <label>Weight (lbs)</label>
-                            <input type="number" id="weightLbs" placeholder="Enter weight" />
-                        </div>
-                    </div>
-                    <!-- Metric input -->
-                    <div id="metricInputs" class="metricInputs">
-                        <div>
-                            <label>Height (cm)</label>
-                            <input type="number" id="height" placeholder="180" />
-                        </div>
-                        <div>
-                            <label>Weight (kg)</label>
-                            <input type="number" id="weight" placeholder="70" />
-                        </div>
-                    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMI Calculator – Check Your Body Mass Index Online</title>
+  <link rel="stylesheet" href="./Css/BIMCAL.css" />
+</head>
 
-                    <div class="btns">
-                        <button id="calcBtn">Calculate</button>
-                        <button id="clearBtn">Clear</button>
-                    </div>
-                </div>
-                <div class="result" id="result">
-                    <div class="bmi-value">BMI = 0.0</div>
-                    <div class="status">(Result)</div>
-                </div>
+<body>
+  <div class="containerBMI">
+    <!-- BMI Calculator Section -->
+    <section class="calculator-section">
+      <h1>BMI Calculator – Check Your Body Mass Index Online</h1>
+      <div class="tabs">
+        <button id="usBtn" class="tab active">US Units</button>
+        <button id="metBtn" class="tab ">Metric</button>
+      </div>
+      <div class="BMI">
+        <div class="form-section">
+          <div>
+            <label>Age</label>
+            <input type="number" class="Age" id="age" placeholder="Enter age" />
+          </div>
+          <div>
+            <label>Gender</label>
+            <div class="gender">
+              <label><input type="radio" name="gender" value="male" checked />
+                Male</label>
+              <label><input type="radio" name="gender" value="female" />
+                Female</label>
             </div>
-        </section>
-      <!-- Article Section -->
-      <section class="article-section">
-        <h2 class="HEADING">How the BMI Calculator Works</h2>
-        <p class="PARA">
-          The BMI calculator uses a simple formula that compares your weight and
-          height:
-        </p>
-        <div class="listtopics">
-          <h3 class="SubHeading">Formula:</h3>
+          </div>
+          <!-- US input -->
+          <div id="usInputs" style="display: none">
+            <div class="HeightDouble">
+              <label>Height</label>
+              <input type="number" id="heightFeet" placeholder="Feet" />
+              <input type="number" id="heightInches" placeholder="Inches" />
+            </div>
+            <div>
+              <label>Weight (lbs)</label>
+              <input type="number" id="weightLbs" placeholder="Enter weight" />
+            </div>
+          </div>
+          <!-- Metric input -->
+          <div id="metricInputs" class="metricInputs">
+            <div>
+              <label>Height (cm)</label>
+              <input type="number" id="height" placeholder="180" />
+            </div>
+            <div>
+              <label>Weight (kg)</label>
+              <input type="number" id="weight" placeholder="70" />
+            </div>
+          </div>
+
+          <div class="btns">
+            <button id="calcBtn">Calculate</button>
+            <button id="clearBtn">Clear</button>
+          </div>
+        </div>
+        <div class="result" id="result">
+          <div class="bmi-value">BMI = 0.0</div>
+          <div class="status">(Result)</div>
+        </div>
+      </div>
+    </section>
+    <!-- Article Section -->
+    <section class="article-section">
+      <h2 class="HEADING">How the BMI Calculator Works</h2>
+      <p class="PARA">
+        The BMI calculator uses a simple formula that compares your weight and
+        height:
+      </p>
+      <div class="listtopics">
+        <h3 class="SubHeading">Formula:</h3>
         <p class="PARA">BMI = Weight (kg) ÷ [Height (m) × Height (m)]</p>
         <h3 class="SubHeading">Example (Metric):</h3>
         <p class="PARA">Weight = 70 kg, Height = 1.75 m</p>
@@ -98,323 +99,347 @@
           <span>→</span><b>Height</b> – meters (m), centimeters (cm), or
           feet/inches
         </p>
-        </div>
+      </div>
 
-        <h2 class="HEADING">What is BMI?</h2>
+      <h2 class="HEADING">What is BMI?</h2>
+      <p class="PARA">
+        The Body Mass Index (BMI) is a simple, yet powerful tool that helps
+        you understand whether your body weight is healthy for your height. It
+        is widely used by doctors, nutritionists, and fitness experts as a
+        quick screening tool to identify potential weight-related health
+        risks.
+      </p>
+      <p class="PARA">
+        BMI is not a diagnostic tool, but it provides a first look at your
+        general health status. It helps you know if you are underweight,
+        within a normal range, overweight, or obese. By regularly checking
+        your BMI, you can track changes over time and make informed decisions
+        about your lifestyle, diet, and fitness routines.
+      </p>
+      <h2 class="HEADING">Historical Background of BMI</h2>
+      <p class="PARA">
+        The concept of BMI was first introduced in the
+        <b>19th century by Adolphe Quetelet</b>, a Belgian mathematician and
+        statistician. Initially called the <b>Quetelet Index</b>, it was
+        designed to study population statistics and human growth patterns.
+      </p>
+      <p class="PARA">
+        Over time, BMI became a <b>global standard</b> for health assessment
+        because it is simple, reliable, and easy to compare across
+        populations. Today, it is used in medical research, public health
+        programs, and personal health tracking worldwide.
+      </p>
+      <h2 class="HEADING">Why is BMI Important?</h2>
+      <p class="PARA">
+        BMI is more than just a number. It’s a practical health indicator that
+        helps you understand your body weight in relation to your overall
+        well-being.
+      </p>
+      <div class="listtopics">
+        <h3 class="SubHeading">1. Monitoring General Health</h3>
         <p class="PARA">
-          The Body Mass Index (BMI) is a simple, yet powerful tool that helps
-          you understand whether your body weight is healthy for your height. It
-          is widely used by doctors, nutritionists, and fitness experts as a
-          quick screening tool to identify potential weight-related health
-          risks.
+          A BMI in the normal range suggests a balanced weight. Deviations
+          (too high or too low) can signal potential nutritional or health
+          issues that may require attention.
         </p>
+        <h3 class="SubHeading">2. Chronic Disease Risk</h3>
         <p class="PARA">
-          BMI is not a diagnostic tool, but it provides a first look at your
-          general health status. It helps you know if you are underweight,
-          within a normal range, overweight, or obese. By regularly checking
-          your BMI, you can track changes over time and make informed decisions
-          about your lifestyle, diet, and fitness routines.
+          A higher BMI is strongly linked with an increased risk of chronic
+          conditions such as:
+          <br />
+          <span>→</span> Type 2 diabetes
+          <br />
+          <span>→</span> High blood pressure
+          <br />
+          <span>→</span> Heart disease
+          <br />
+          <span>→</span> Certain metabolic disorders
         </p>
-        <h2 class="HEADING">Historical Background of BMI</h2>
+        <h3 class="SubHeading">3. Fitness & Progress Tracking</h3>
         <p class="PARA">
-          The concept of BMI was first introduced in the
-          <b>19th century by Adolphe Quetelet</b>, a Belgian mathematician and
-          statistician. Initially called the <b>Quetelet Index</b>, it was
-          designed to study population statistics and human growth patterns.
+          Regularly checking BMI allows you to monitor changes over time. This
+          is particularly useful if you’re following a weight loss, muscle
+          gain, or fitness program.
         </p>
+        <h3 class="SubHeading">4. Lifestyle Guidance</h3>
         <p class="PARA">
-          Over time, BMI became a <b>global standard</b> for health assessment
-          because it is simple, reliable, and easy to compare across
-          populations. Today, it is used in medical research, public health
-          programs, and personal health tracking worldwide.
-        </p>
-        <h2 class="HEADING">Why is BMI Important?</h2>
-        <p class="PARA">
-          BMI is more than just a number. It’s a practical health indicator that
-          helps you understand your body weight in relation to your overall
-          well-being.
-        </p>
-        <div class="listtopics">
-          <h3 class="SubHeading">1. Monitoring General Health</h3>
-          <p class="PARA">
-            A BMI in the normal range suggests a balanced weight. Deviations
-            (too high or too low) can signal potential nutritional or health
-            issues that may require attention.
-          </p>
-          <h3 class="SubHeading">2. Chronic Disease Risk</h3>
-          <p class="PARA">
-            A higher BMI is strongly linked with an increased risk of chronic
-            conditions such as:
-            <br />
-            <span>→</span> Type 2 diabetes
-            <br />
-            <span>→</span> High blood pressure
-            <br />
-            <span>→</span> Heart disease
-            <br />
-            <span>→</span> Certain metabolic disorders
-          </p>
-          <h3 class="SubHeading">3. Fitness & Progress Tracking</h3>
-          <p class="PARA">
-            Regularly checking BMI allows you to monitor changes over time. This
-            is particularly useful if you’re following a weight loss, muscle
-            gain, or fitness program.
-          </p>
-          <h3 class="SubHeading">4. Lifestyle Guidance</h3>
-          <p class="PARA">
-            By understanding your BMI, you can make more informed decisions
-            about:
+          By understanding your BMI, you can make more informed decisions
+          about:
 
-            <br />
-            <span>→</span> Nutrition and diet
-            <br />
-            <span>→</span> Physical activity
-            <br />
-            <span>→</span> Overall wellness strategies
-          </p>
-          <h3 class="SubHeading">5. Complete Health Picture</h3>
-          <p class="PARA">
-            Regularly checking BMI allows you to monitor changes over time. This
-            is particularly useful if you’re following a weight loss, muscle
-            gain, or fitness program.
-          </p>
-        </div>
-        <h2 class="HEADING">BMI Categories and Interpretation</h2>
-        <table>
+          <br />
+          <span>→</span> Nutrition and diet
+          <br />
+          <span>→</span> Physical activity
+          <br />
+          <span>→</span> Overall wellness strategies
+        </p>
+        <h3 class="SubHeading">5. Complete Health Picture</h3>
+        <p class="PARA">
+          Regularly checking BMI allows you to monitor changes over time. This
+          is particularly useful if you’re following a weight loss, muscle
+          gain, or fitness program.
+        </p>
+      </div>
+      <h2 class="HEADING">BMI Categories and Interpretation</h2>
+      <table>
+        <tr>
+          <th>BMI Value</th>
+          <th>Category</th>
+          <th>Health Risk Description</th>
+        </tr>
+        <tr>
+          <td>Below 18.5</td>
+          <td class="underweight">Underweight</td>
+          <td>
+            May indicate nutritional deficiency, weak immunity, or bone health
+            concerns
+          </td>
+        </tr>
+        <tr>
+          <td>18.5 – 24.9</td>
+          <td class="normal">Normal Weight</td>
+          <td>Healthy range, lowest risk of health issues</td>
+        </tr>
+        <tr>
+          <td>25 – 29.9</td>
+          <td class="overweight">Overweight</td>
+          <td>
+            Increased risk of heart disease, diabetes, high blood pressure
+          </td>
+        </tr>
+        <tr>
+          <td>30 – 34.9</td>
+          <td class="obese1">Obesity Class I</td>
+          <td>High risk of weight-related chronic conditions</td>
+        </tr>
+        <tr>
+          <td>35 – 39.9</td>
+          <td class="obese2">Obesity Class II</td>
+          <td>Very high risk, serious health concerns</td>
+        </tr>
+        <tr>
+          <td>40 and above</td>
+          <td class="obese3">Obesity Class III</td>
+          <td>Extremely high risk, medical attention advised</td>
+        </tr>
+      </table>
+      <p class="PARA">
+        These categories provide clear guidelines to interpret your BMI and
+        understand associated health implications.
+      </p>
+      <h3 class="SubHeading">Example Calculations</h3>
+      <div class="listtopics">
+        <h4 class="HeadH4"><b>Example 1:</b></h4>
+        <ul style="list-style-type: disc; padding-left: 2rem">
+          <li>Weight = 65 kg, Height = 1.68 m</li>
+          <li>BMI = 65 ÷ (1.68 × 1.68) = 23.0 → Normal weight</li>
+        </ul>
+        <h4 class="HeadH4"><b>Example 2:</b></h4>
+        <ul style="list-style-type: disc; padding-left: 2rem">
+          <li>Weight = 200 lbs, Height = 5 ft 9 in (69 in)</li>
+          <li>BMI = (200 ÷ 69²) × 703 = 29.5 → Overweight</li>
+        </ul>
+      </div>
+      <p class="PARA">
+        These examples show how BMI varies with height and weight, helping
+        users relate numbers to real-life scenarios.
+      </p>
+      <h3 class="SubHeading">Comparisons & Percentiles</h3>
+      <table>
+        <thead>
           <tr>
-            <th>BMI Value</th>
-            <th>Category</th>
-            <th>Health Risk Description</th>
+            <th>Age Group</th>
+            <th>Measurement Method</th>
+            <th>Why it Matters / Notes</th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
-            <td>Below 18.5</td>
-            <td class="underweight">Underweight</td>
+            <td>Children (2–19 yrs)</td>
+            <td>BMI-for-age percentile charts</td>
             <td>
-              May indicate nutritional deficiency, weak immunity, or bone health
-              concerns
+              Accounts for growth patterns; compares child to peers of same
+              age and sex
             </td>
           </tr>
           <tr>
-            <td>18.5 – 24.9</td>
-            <td class="normal">Normal Weight</td>
-            <td>Healthy range, lowest risk of health issues</td>
-          </tr>
-          <tr>
-            <td>25 – 29.9</td>
-            <td class="overweight">Overweight</td>
+            <td>Teenagers</td>
+            <td>BMI-for-age percentile charts</td>
             <td>
-              Increased risk of heart disease, diabetes, high blood pressure
+              Tracks healthy growth during puberty; helps identify
+              overweight/underweight early
             </td>
           </tr>
           <tr>
-            <td>30 – 34.9</td>
-            <td class="obese1">Obesity Class I</td>
-            <td>High risk of weight-related chronic conditions</td>
+            <td>Adults (20+ yrs)</td>
+            <td>Standard BMI formula</td>
+            <td>
+              Age less variable; focus on general health and chronic disease
+              risk
+            </td>
           </tr>
           <tr>
-            <td>35 – 39.9</td>
-            <td class="obese2">Obesity Class II</td>
-            <td>Very high risk, serious health concerns</td>
+            <td>Men vs Women</td>
+            <td>Same BMI formula, interpret cautiously</td>
+            <td>
+              Muscle mass differences may make BMI appear higher in men; women
+              may carry more fat for same BMI
+            </td>
           </tr>
-          <tr>
-            <td>40 and above</td>
-            <td class="obese3">Obesity Class III</td>
-            <td>Extremely high risk, medical attention advised</td>
-          </tr>
-        </table>
-        <p class="PARA">
-          These categories provide clear guidelines to interpret your BMI and
-          understand associated health implications.
-        </p>
-        <h3 class="SubHeading">Example Calculations</h3>
-        <div class="listtopics">
-          <h4 class="HeadH4"><b>Example 1:</b></h4>
-          <ul style="list-style-type: disc; padding-left: 2rem">
-            <li>Weight = 65 kg, Height = 1.68 m</li>
-            <li>BMI = 65 ÷ (1.68 × 1.68) = 23.0 → Normal weight</li>
-          </ul>
-          <h4 class="HeadH4"><b>Example 2:</b></h4>
-          <ul style="list-style-type: disc; padding-left: 2rem">
-            <li>Weight = 200 lbs, Height = 5 ft 9 in (69 in)</li>
-            <li>BMI = (200 ÷ 69²) × 703 = 29.5 → Overweight</li>
-          </ul>
-        </div>
-        <p class="PARA">
-          These examples show how BMI varies with height and weight, helping
-          users relate numbers to real-life scenarios.
-        </p>
-        <h3 class="SubHeading">Comparisons & Percentiles</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Age Group</th>
-              <th>Measurement Method</th>
-              <th>Why it Matters / Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Children (2–19 yrs)</td>
-              <td>BMI-for-age percentile charts</td>
-              <td>
-                Accounts for growth patterns; compares child to peers of same
-                age and sex
-              </td>
-            </tr>
-            <tr>
-              <td>Teenagers</td>
-              <td>BMI-for-age percentile charts</td>
-              <td>
-                Tracks healthy growth during puberty; helps identify
-                overweight/underweight early
-              </td>
-            </tr>
-            <tr>
-              <td>Adults (20+ yrs)</td>
-              <td>Standard BMI formula</td>
-              <td>
-                Age less variable; focus on general health and chronic disease
-                risk
-              </td>
-            </tr>
-            <tr>
-              <td>Men vs Women</td>
-              <td>Same BMI formula, interpret cautiously</td>
-              <td>
-                Muscle mass differences may make BMI appear higher in men; women
-                may carry more fat for same BMI
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <h2 class="HEADING">Limitations of BMI</h2>
-        <p class="PARA">
-          While BMI is a valuable screening tool, it has some limitations:
-          <br />
-          <span>→</span> Does not distinguish muscle mass from fat, athletes may
-          appear overweight by BMI but have low body fat.
-          <br />
-          <span>→</span> May underestimate risk in elderly adults who lose
-          muscle but retain fat.
-          <br />
-          <span>→</span> Does not indicate fat distribution. Abdominal fat is
-          more dangerous than fat in hips/thighs. <span>→</span> Not suitable
-          for pregnant women or young children without special charts
-        </p>
-        <h2 class="HEADING">Tips for Accurate Use</h2>
-        <div class="listtopics">
-          <ul
-            style="list-style-type: disc; padding-left: 2rem; padding-top: 10px"
-          >
-            <li>
-              <b style="color: #1a5276;">Measure height and weight carefully</b>
-              <ul style="list-style-type: circle; padding-left: 2rem">
-                <li>Use a reliable scale for weight.</li>
-                <li>
-                  Stand straight against a wall or use a stadiometer for height.
-                </li>
-                <li>
-                  Measure at the same time of day for consistency (e.g.,
-                  morning).
-                </li>
-              </ul>
-            </li>
+        </tbody>
+      </table>
+      <h2 class="HEADING">Limitations of BMI</h2>
+      <p class="PARA">
+        While BMI is a valuable screening tool, it has some limitations:
+        <br />
+        <span>→</span> Does not distinguish muscle mass from fat, athletes may
+        appear overweight by BMI but have low body fat.
+        <br />
+        <span>→</span> May underestimate risk in elderly adults who lose
+        muscle but retain fat.
+        <br />
+        <span>→</span> Does not indicate fat distribution. Abdominal fat is
+        more dangerous than fat in hips/thighs. <span>→</span> Not suitable
+        for pregnant women or young children without special charts
+      </p>
+      <h2 class="HEADING">Tips for Accurate Use</h2>
+      <div class="listtopics">
+        <ul style="list-style-type: disc; padding-left: 2rem; padding-top: 10px">
+          <li>
+            <b style="color: #1a5276;">Measure height and weight carefully</b>
+            <ul style="list-style-type: circle; padding-left: 2rem">
+              <li>Use a reliable scale for weight.</li>
+              <li>
+                Stand straight against a wall or use a stadiometer for height.
+              </li>
+              <li>
+                Measure at the same time of day for consistency (e.g.,
+                morning).
+              </li>
+            </ul>
+          </li>
 
-            <li>
-              <b style="color: #1a5276;">Use consistent units</b>
-              <ul style="list-style-type: circle; padding-left: 2rem">
-                <li>Stick to either metric (kg/m) or imperial (lbs/inches).</li>
-                <li>Avoid mixing units to prevent calculation errors.</li>
-              </ul>
-            </li>
+          <li>
+            <b style="color: #1a5276;">Use consistent units</b>
+            <ul style="list-style-type: circle; padding-left: 2rem">
+              <li>Stick to either metric (kg/m) or imperial (lbs/inches).</li>
+              <li>Avoid mixing units to prevent calculation errors.</li>
+            </ul>
+          </li>
 
-            <li>
-              <b style="color: #1a5276;">Track BMI over time</b>
-              <ul style="list-style-type: circle; padding-left: 2rem">
-                <li>Don’t rely on a single measurement.</li>
-                <li>
-                  Record weekly or monthly BMI values to observe trends in your
-                  weight and health progress.
-                </li>
-              </ul>
-            </li>
+          <li>
+            <b style="color: #1a5276;">Track BMI over time</b>
+            <ul style="list-style-type: circle; padding-left: 2rem">
+              <li>Don’t rely on a single measurement.</li>
+              <li>
+                Record weekly or monthly BMI values to observe trends in your
+                weight and health progress.
+              </li>
+            </ul>
+          </li>
 
-            <li>
-              <b style="color: #1a5276;">Combine BMI with other health metrics</b>
-              <ul style="list-style-type: circle; padding-left: 2rem">
-                <li>
-                  Use waist-to-hip ratio or body fat percentage for more
-                  accurate assessment.
-                </li>
-                <li>
-                  Consider lifestyle factors such as diet, physical activity,
-                  and sleep.
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <p class="PARA">
-          This BMI calculator is provided for educational purposes only. It
-          gives a general estimate of body weight status but cannot replace
-          professional medical advice, diagnosis, or treatment.
+          <li>
+            <b style="color: #1a5276;">Combine BMI with other health metrics</b>
+            <ul style="list-style-type: circle; padding-left: 2rem">
+              <li>
+                Use waist-to-hip ratio or body fat percentage for more
+                accurate assessment.
+              </li>
+              <li>
+                Consider lifestyle factors such as diet, physical activity,
+                and sleep.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <p class="PARA">
+        This BMI calculator is provided for educational purposes only. It
+        gives a general estimate of body weight status but cannot replace
+        professional medical advice, diagnosis, or treatment.
+      </p>
+      <h3 class="SubHeading">Why this is important for you</h3>
+      <p class="PARA">
+        <span>→</span> BMI is a screening tool, not a medical test. It does
+        not measure body fat directly or account for individual health
+        conditions.
+        <br />
+        <span>→</span> Everyone’s body is unique, factors like muscle mass,
+        bone density, age, gender, and medical history can affect health risks
+        even if BMI seems normal.
+        <br />
+        <span>→</span> Relying solely on BMI may lead to misinterpretation of
+        your health status.
+      </p>
+      <h3 class="SubHeading">How to use this safely</h3>
+      <p class="PARA">
+        <span>→</span> Treat the BMI result as a guideline to understand your
+        general weight range.
+        <br />
+        <span>→</span> Combine it with other health indicators such as diet,
+        exercise, waist-to-hip ratio, or body fat percentage.
+        <br />
+        <span>→</span> Consult a qualified healthcare professional for
+        personalized advice, diagnosis, or treatment.
+      </p>
+      <h2 class="HEADING">Related Tools & Further Reading</h2>
+      <p class="PARA">
+        <span>→</span> <b> Calorie Calculator</b> – Estimate daily caloric
+        needs for weight management.
+        <br />
+        <span>→</span> <b> Body Fat Calculator</b> – Get a more precise
+        estimate of fat percentage.
+        <br />
+        <span>→</span><b> Ideal Weight Calculator</b> – Determine a recommended
+        healthy weight range.
+        <br />
+        <span>→</span><b> Fitness & diet guides</b> – waist-to-hip ratio
+        calculators, and other health resources.
+      </p>
+      <div class="conclusion">
+        <h2 class="HEADING">Conclusion</h2>
+        <p>
+          The BMI calculator is a fast, free, and effective tool for
+          understanding your body weight relative to height. It provides a
+          guideline to identify potential health risks, but it should not be
+          used as the only measure of health. For a complete picture, combine
+          BMI with other health indicators like diet, exercise, and lifestyle
+          habits, and consult healthcare professionals when needed.
         </p>
-        <h3 class="SubHeading">Why this is important for you</h3>
-        <p class="PARA">
-          <span>→</span> BMI is a screening tool, not a medical test. It does
-          not measure body fat directly or account for individual health
-          conditions.
-          <br />
-          <span>→</span> Everyone’s body is unique, factors like muscle mass,
-          bone density, age, gender, and medical history can affect health risks
-          even if BMI seems normal.
-          <br />
-          <span>→</span> Relying solely on BMI may lead to misinterpretation of
-          your health status.
+        <p>
+          Use this BMI calculator regularly to track your progress, stay
+          proactive about your health, and make informed decisions for a
+          healthier life.
         </p>
-        <h3 class="SubHeading">How to use this safely</h3>
-        <p class="PARA">
-          <span>→</span> Treat the BMI result as a guideline to understand your
-          general weight range.
-          <br />
-          <span>→</span> Combine it with other health indicators such as diet,
-          exercise, waist-to-hip ratio, or body fat percentage.
-          <br />
-          <span>→</span> Consult a qualified healthcare professional for
-          personalized advice, diagnosis, or treatment.
-        </p>
-        <h2 class="HEADING">Related Tools & Further Reading</h2>
-        <p class="PARA">
-          <span>→</span> <b> Calorie Calculator</b> – Estimate daily caloric
-          needs for weight management.
-          <br />
-          <span>→</span> <b> Body Fat Calculator</b> – Get a more precise
-          estimate of fat percentage.
-          <br />
-          <span>→</span><b> Ideal Weight Calculator</b> – Determine a recommended
-          healthy weight range.
-          <br />
-          <span>→</span><b> Fitness & diet guides</b> – waist-to-hip ratio
-          calculators, and other health resources.
-        </p>
-        <div class="conclusion">
-          <h2 class="HEADING">Conclusion</h2>
-          <p>
-            The BMI calculator is a fast, free, and effective tool for
-            understanding your body weight relative to height. It provides a
-            guideline to identify potential health risks, but it should not be
-            used as the only measure of health. For a complete picture, combine
-            BMI with other health indicators like diet, exercise, and lifestyle
-            habits, and consult healthcare professionals when needed.
-          </p>
-          <p>
-            Use this BMI calculator regularly to track your progress, stay
-            proactive about your health, and make informed decisions for a
-            healthier life.
-          </p>
-        </div>
-      </section>
+      </div>
+      <div class="faq-header">
+      <h2 class="HEADING">FAQs</h2>
     </div>
-    <script src="./Index.js"></script>
-  </body>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3 class="SubHeading">What is a healthy BMI range?</h3>
+        <p class="PARA">For adults, a BMI between 18.5 and 24.9 is considered healthy.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="SubHeading">Is BMI the same for men and women?</h3>
+        <p class="PARA">The formula is the same, but interpretation may differ slightly due to body composition differences.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="SubHeading">Can BMI be inaccurate?</h3>
+        <p class="PARA">Yes, especially for athletes, highly muscular individuals, and older adults.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="SubHeading">Is BMI useful for children?</h3>
+        <p class="PARA">For children and teenagers, BMI is interpreted using age- and sex-specific growth charts.</p>
+      </div>
+    </div>
+    </section>
+  </div>
+  <script src="./Index.js"></script>
+</body>
+
 </html>
