@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Css/DayCal.css" />
+    <title>Day Calculator</title>
+  </head>
+
+  <body>
+    <div class="calculatorDay-container">
+      <h1>Day Calculator — Total days, Business days & Add/Subtract</h1>
+      <div class="calc-grid">
+        <div class="card">
+          <!-- ===================================== -->
+          <!-- FIRST CALCULATOR: Days Between Dates -->
+          <!-- ===================================== -->
+          <h2>Calculate days between two dates</h2>
+          <p>
+            Find the number of years, months, weeks, and days between dates.
+            Click "Settings" to define holidays.
+          </p>
+
+          <div class="controls">
+            <div class="controlsFormDay">
+              <div>
+                <div>
+                  <label>Start date</label>
+                  <input id="startDate" type="date" />
+                </div>
+                <div>
+                  <label>End date</label>
+                  <input id="endDate" type="date" />
+                </div>
+                <div class="form-row">
+                  <input id="inclusive" type="checkbox" />
+                  <label for="inclusive"
+                    >Include end date (Inclusive count)</label
+                  >
+                </div>
+                <div>
+                  <label>Mode</label>
+                  <select id="mode">
+                    <option value="total">Total days (calendar)</option>
+                    <option value="business">
+                      Business days (weekdays & holidays excluded)
+                    </option>
+                  </select>
+                  <div class="small muted">
+                    For business days, select which weekdays are working days
+                    and choose holidays.
+                  </div>
+                </div>
+
+                <div>
+                  <label>Weekdays counted as business days</label>
+                  <div class="form-row" style="flex-wrap: wrap">
+                    <label
+                      ><input
+                        type="checkbox"
+                        class="weekday"
+                        data-day="1"
+                        checked
+                      />
+                      Mon</label
+                    >
+                    <label
+                      ><input
+                        type="checkbox"
+                        class="weekday"
+                        data-day="2"
+                        checked
+                      />
+                      Tue</label
+                    >
+                    <label
+                      ><input
+                        type="checkbox"
+                        class="weekday"
+                        data-day="3"
+                        checked
+                      />
+                      Wed</label
+                    >
+                    <label
+                      ><input
+                        type="checkbox"
+                        class="weekday"
+                        data-day="4"
+                        checked
+                      />
+                      Thu</label
+                    >
+                    <label
+                      ><input
+                        type="checkbox"
+                        class="weekday"
+                        data-day="5"
+                        checked
+                      />
+                      Fri</label
+                    >
+                    <label
+                      ><input type="checkbox" class="weekday" data-day="6" />
+                      Sat</label
+                    >
+                    <label
+                      ><input type="checkbox" class="weekday" data-day="0" />
+                      Sun</label
+                    >
+                  </div>
+                </div>
+
+                <div class="button-group">
+                  <button id="DayCalButton">Calculate</button>
+                  <button id="clearBtn" class="clear">Clear</button>
+                </div>
+              </div>
+
+              <div>
+                <label>Public holidays (Poland) — include in exclusion</label>
+                <div class="holiday-list" id="holidayList">
+                  <!-- Holidays will be loaded here -->
+                </div>
+              </div>
+            </div>
+
+            <div class="result-text">
+              <h2>Result</h2>
+              <div id="DayCaloutput"></div>
+              <div class="calendar" id="calendarContainer"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================== -->
+        <!-- SECOND CALCULATOR: Add or Subtract -->
+        <!-- ===================================== -->
+        <div class="card">
+          <h2>Add to or Subtract from a Date</h2>
+          <p>
+            Enter a start date and add or subtract years, months, weeks, or
+            days. Optionally calculate only business days excluding weekends &
+            holidays.
+          </p>
+
+          <div class="addsub-section">
+            <div class="Form">
+              <div class="form-input">
+                <label for="as-start-date">Start Date:</label>
+                <input type="date" id="as-start-date" />
+              </div>
+
+              <div class="form-input">
+                <label>Operation:</label>
+                <select id="as-operation">
+                  <option value="add">+</option>
+                  <option value="subtract">−</option>
+                </select>
+              </div>
+
+              <div class="form-row multi-input">
+                <div>
+                  <label>Years:</label>
+                  <input type="number" id="as-years" value="0" />
+                </div>
+                <div>
+                  <label>Months:</label>
+                  <input type="number" id="as-months" value="0" />
+                </div>
+                <div>
+                  <label>Weeks:</label>
+                  <input type="number" id="as-weeks" value="0" />
+                </div>
+                <div>
+                  <label>Days:</label>
+                  <input type="number" id="as-days" value="0" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label
+                  ><input type="checkbox" id="as-business" /> Calculate in
+                  business days</label
+                >
+              </div>
+
+              <div class="button-group">
+                <button id="as-calc-btn">Calculate</button>
+                <button id="as-clear-btn" class="clear">Clear</button>
+              </div>
+            </div>
+
+            <div class="result-text-AddCal">
+              <h2>Result</h2>
+              <div id="as-result"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="article-section">
+  <h2 class="HEADING">How This Day Calculator Works</h2>
+  <p class="PARA">
+    The calculator computes the number of days between two dates by subtracting the start date from the end date. 
+    If you want to include both start and end dates, you add 1 to the result.
+  </p>
+  <p class="PARA">
+    <b>Total Days = (End Date − Start Date) + 1</b>
+  </p>
+  <p class="PARA">
+    To calculate business days (excluding weekends and public holidays), the calculator subtracts the number of weekend days and public holidays:
+  </p>
+  <p class="PARA">
+    <b>Business Days = Total Days − Weekend Days − Public Holidays</b>
+  </p>
+  <p class="PARA">
+    This formula allows you to understand how the calculator counts days transparently and precisely.
+  </p>
+
+  <h2 class="HEADING">How It Works in Practice</h2>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span>The calculator simply subtracts the earlier date from the later date.</p>
+    <p class="PARA"><span>→</span>If you tick “inclusive”, it adds 1 to count both start and end.</p>
+    <p class="PARA"><span>→</span>For business days, it scans the calendar and skips Saturdays, Sundays, and any holidays you pick.</p>
+  </div>
+
+  <h2 class="HEADING">What Is a Days Calculator?</h2>
+  <p class="PARA">
+    A Days Calculator is an online tool that helps users calculate the number of days between two calendar dates quickly and accurately. 
+    Unlike manual counting, it offers several advanced features to make date calculations easier and more reliable:
+  </p>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span><b>Total days calculation:</b> Provides the total number of days from start date to end date, either inclusive or exclusive depending on your choice.</p>
+    <p class="PARA"><span>→</span><b>Business days:</b> Automatically excludes weekends and public holidays based on your settings or country.</p>
+    <p class="PARA"><span>→</span><b>Weeks and remaining days breakdown:</b> Converts day counts to weeks plus leftover days for easier understanding.</p>
+    <p class="PARA"><span>→</span><b>Add/Subtract days:</b> Quickly jump forward or backward in time by days, weeks, months, or even years.</p>
+    <p class="PARA"><span>→</span><b>Data export:</b> Export calculated results directly to CSV or Google Sheets for project management and reporting.</p>
+  </div>
+
+  <h2 class="HEADING">Why a Days Calculator Beats Manual Counting</h2>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span><b>Handles leap years seamlessly:</b> Automatically accounts for February 29th in leap years.</p>
+    <p class="PARA"><span>→</span><b>Manages varying month lengths:</b> Considers days in each month accurately.</p>
+    <p class="PARA"><span>→</span><b>One-click holiday exclusion:</b> Effortlessly excludes official holidays.</p>
+    <p class="PARA"><span>→</span><b>High accuracy:</b> Calculates time differences with millisecond precision.</p>
+  </div>
+
+  <h2 class="HEADING">Step-by-Step Written Guide</h2>
+  <div class="listtopics">
+    <p class="PARA"><span>1.</span> Pick start date – click calendar or type 15/01/2025</p>
+    <p class="PARA"><span>2.</span> Pick end date – type 10/04/2025</p>
+    <p class="PARA"><span>3.</span> Choose mode – “Total days” or “Business days only”</p>
+    <p class="PARA"><span>4.</span> Tick “Include end date” if you want both start and end counted</p>
+    <p class="PARA"><span>5.</span> Hit Calculate → instant result: 86 days total, 61 business days</p>
+    <p class="PARA"><span>6.</span> Optional: add 30 days to see future date</p>
+    <p class="PARA"><span>7.</span> Export → copy number or download CSV for project sheet</p>
+  </div>
+
+  <h2 class="HEADING">Where Standard Calculators Stop</h2>
+  <table>
+    <tr>
+      <th>Manual Problem</th>
+      <th>Our Fix</th>
+      <th>Benefit</th>
+    </tr>
+    <tr>
+      <td>Leap-year mistakes</td>
+      <td>Auto 29 Feb detection</td>
+      <td>Never miscount February</td>
+    </tr>
+    <tr>
+      <td>Weekend guess-work</td>
+      <td>One-click “business days”</td>
+      <td>Accurate project timelines</td>
+    </tr>
+    <tr>
+      <td>Holiday forgetfulness</td>
+      <td>Built-in Polish holidays</td>
+      <td>No 1-day off errors</td>
+    </tr>
+    <tr>
+      <td>Bulk date math</td>
+      <td>Add/subtract days/weeks</td>
+      <td>Forecast deadlines instantly</td>
+    </tr>
+  </table>
+
+  <h2 class="HEADING">Inside the Engine – How the Calculator Really Counts</h2>
+  <p class="PARA">
+    When you click “Calculate,” the tool doesn’t just flip through a paper calendar. Instead, it uses a precise internal method based on Unix timestamps.
+  </p>
+  <div class="listtopics">
+    <h3 class="SubHeading">How It Works</h3>
+    <p class="PARA"><span>→</span>Unix timestamps represent dates as milliseconds since January 1, 1970.</p>
+    <p class="PARA"><span>→</span>The calculator converts both start and end dates into these timestamps.</p>
+    <p class="PARA"><span>→</span>It subtracts the earlier timestamp from the later one to get total milliseconds.</p>
+    <p class="PARA"><span>→</span>Dividing by 86,400,000 gives the raw count of days.</p>
+  </div>
+
+  <h3 class="SubHeading">Business Days Calculation</h3>
+  <p class="PARA">
+    To count business days, the engine iterates through every date in the range, flags Saturdays, Sundays, and holidays, and subtracts them from the total.
+  </p>
+
+  <h3 class="SubHeading">Real-life Edge Case Example</h3>
+  <p class="PARA">
+    Start: 29 February 2024 (leap year, Thursday) <br>
+    End: 1 March 2024 (Friday) <br>
+    Raw count: 2 days <br>
+    Business-day count: 2 days (both weekdays) <br>
+    Leap year is automatically detected through Unix timestamps.
+  </p>
+
+  <h2 class="HEADING">Business Days vs. Calendar Days – Why the Gap Matters</h2>
+  <p class="PARA">
+    A 30-day span may include 8–10 weekend days plus holidays, meaning 25–30% of days are non-working. 
+    The calculator shows both numbers instantly:
+  </p>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span><b>Calendar days:</b> Total elapsed time including weekends and holidays.</p>
+    <p class="PARA"><span>→</span><b>Business days:</b> Working days excluding weekends and public holidays.</p>
+  </div>
+
+  <h3 class="SubHeading">Real-life Example</h3>
+  <p class="PARA">
+    You sign a contract on 3 June 2024 with a 90-business-day completion clause.<br>
+    Raw calendar math: 90 days ≈ 3 months.<br>
+    Weekends and holidays add 25 non-working days.<br>
+    Actual deadline: 115 calendar days later – 3 September 2024.
+  </p>
+
+  <h2 class="HEADING">Add/Subtract Days – Bulk Date Math Without Excel</h2>
+  <p class="PARA">
+    This calculator lets you add or subtract large numbers of days, weeks, or months easily. 
+    It handles leap years and month changes automatically.
+  </p>
+  <div class="listtopics">
+    <p class="PARA"><b>Example 1:</b> Add 90 days<br>Start: 31 December 2024 → Result: 30 March 2025</p>
+    <p class="PARA"><b>Example 2:</b> Subtract 90 days<br>End: 31 December 2024 → Result: 1 October 2024</p>
+    <p class="PARA"><b>Example 3:</b> Add 10 weeks<br>Start: 1 January 2025 → Result: 12 March 2025</p>
+  </div>
+
+  <h2 class="HEADING">Quick-Look Tables</h2>
+  <h3 class="SubHeading">Table A – Common Date Spans</h3>
+  <table>
+    <tr>
+      <th>From → To</th>
+      <th>Total Days</th>
+      <th>Business Days (PL)</th>
+    </tr>
+    <tr>
+      <td>1 Jan → 31 Dec</td>
+      <td>366</td>
+      <td>251</td>
+    </tr>
+    <tr>
+      <td>1 Jan → 31 Mar</td>
+      <td>91</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <td>1 May → 31 Aug</td>
+      <td>123</td>
+      <td>88</td>
+    </tr>
+  </table>
+
+  <h3 class="SubHeading">Table B – Add/Subtract 30 Days</h3>
+  <table>
+    <tr>
+      <th>Start Date</th>
+      <th>+30 Days</th>
+      <th>–30 Days</th>
+    </tr>
+    <tr>
+      <td>15 Feb 2024</td>
+      <td>16 Mar 2024</td>
+      <td>16 Jan 2024</td>
+    </tr>
+    <tr>
+      <td>31 Dec 2024</td>
+      <td>30 Jan 2025</td>
+      <td>1 Dec 2024</td>
+    </tr>
+  </table>
+
+  <h2 class="HEADING">Tips for Accurate Results</h2>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span>Include the end date only if you want the last day counted.</p>
+    <p class="PARA"><span>→</span>Pick the correct country for public holidays (Polish holidays built-in).</p>
+    <p class="PARA"><span>→</span>Leap years are handled automatically.</p>
+    <p class="PARA"><span>→</span>Export CSV for bulk calculations in Excel or Notion.</p>
+  </div>
+
+  <div class="conclusion">
+    <h2 class="HEADING">Bottom Line</h2>
+    <p class="PARA">
+      Plug in two dates once and you’ll never thumb-count calendar squares again. 
+      Remember the formula: <b>Total Days = End Date − Start Date (+1 if inclusive)</b>
+    </p>
+  </div>
+
+  <div class="faq-header">
+    <h2 class="HEADING">FAQs</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <h3 class="SubHeading">Q1. Can I exclude only Sundays, not Saturdays?</h3>
+      <p class="PARA">Yes – advanced mode lets you pick which weekdays count as “business days”.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="SubHeading">Q2. Does it account for leap years?</h3>
+      <p class="PARA">Automatically – 29 Feb 2024 is included when relevant.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="SubHeading">Q3. Can I add 90 days to a date?</h3>
+      <p class="PARA">Yes – use the “Add/Subtract” tab, enter 90, direction = forward.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="SubHeading">Q4. How accurate is the count?</h3>
+      <p class="PARA">Millisecond-precision; follows ISO 8601 calendar rules.</p>
+    </div>
+  </div>
+</section>
+
+
+    <script src="Index.js"></script>
+  </body>
+</html>
