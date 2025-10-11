@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Css/Interest.css" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <div class="containerInterest">
+      <div class="calportion">
+        <div class="cal-box">
+          <h1>Investment Calculator</h1>
+
+          <div class="row-input">
+            <div>
+              <label>Initial Investment</label>
+              <input type="number" id="initialInvestment" value="" />
+            </div>
+
+            <div>
+              <label>Annual Contribution</label>
+              <input type="number" id="annualContribution" value="" />
+            </div>
+          </div>
+
+          <div class="row-input">
+            <div>
+              <label>Monthly Contribution</label>
+              <input type="number" id="monthlyContribution" value="" />
+            </div>
+
+            <div>
+              <label>Interest Rate (%)</label>
+              <input type="number" id="interestRate" value="" />
+            </div>
+          </div>
+
+          <div class="row-input">
+            <div>
+              <label>Compounding Frequency</label>
+              <select id="compound">
+                <option value="annually">Annually</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Investment Length (Years)</label>
+              <input type="number" id="years" value="" />
+            </div>
+          </div>
+
+          <div class="row-input">
+            <div>
+              <label>Investment Length (Months)</label>
+              <input type="number" id="months" value="" />
+            </div>
+
+            <div>
+              <label>Tax Rate (%)</label>
+              <input type="number" id="taxRate" value="" />
+            </div>
+          </div>
+
+          <label>Inflation Rate (%)</label>
+          <input type="number" id="inflationRate" value="" />
+
+          <button id="investment-calc-btn">Calculate</button>
+        </div>
+
+        <div class="results-box" id="results">
+          <h3>Investment Summary</h3>
+          <div class="result-item">
+            <span class="label">Ending Balance:</span>
+            <span class="value highlight" id="endingBalance"></span>
+          </div>
+          <div class="result-item">
+            <span class="label">Total Principal:</span>
+            <span class="value" id="totalPrincipal"></span>
+          </div>
+          <div class="result-item">
+            <span class="label">Total Contributions:</span>
+            <span class="value" id="totalContributions"></span>
+          </div>
+          <hr />
+          <div class="result-item">
+            <span class="label">Total Interest:</span>
+            <span class="value" id="totalInterest"></span>
+          </div>
+          <div class="result-item">
+            <span class="label">Interest of Initial Investment:</span>
+            <span class="value" id="interestInitial"></span>
+          </div>
+          <div class="result-item">
+            <span class="label">Interest of the Contributions:</span>
+            <span class="value" id="interestContributions"></span>
+          </div>
+          <hr />
+          <div class="result-item">
+            <span class="label">Total Tax:</span>
+            <span class="value" id="totalTax"></span>
+          </div>
+          <div class="result-item">
+            <span class="label">Total Interest After Tax:</span>
+            <span class="value" id="interestAfterTax"></span>
+          </div>
+          <hr />
+          <div class="result-item">
+            <span class="label">Buying Power After Inflation:</span>
+            <span class="value" id="inflationAdjusted"></span>
+          </div>
+
+          
+        </div>
+      </div>
+      <div class="caltable">
+        <h3>Accumulation Schedule</h3>
+        <table id="scheduleTable">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Deposit</th>
+              <th>Interest</th>
+              <th>Tax</th>
+              <th>Ending Balance</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <section class="article-section">
+      <h2 class="HEADING">
+        Interest Calculator: How It Works and Why You Need It
+      </h2>
+
+      <h2 class="HEADING">How Does an Interest Calculator Work?</h2>
+      <p class="PARA">
+        At its heart, an interest calculator answers one question:
+      </p>
+      <p class="PARA">
+        <b
+          >“How much will my money grow or how much will a loan cost over
+          time?”</b
+        >
+      </p>
+      <p class="PARA">It works by combining three main ingredients:</p>
+
+      <div class="listtopics">
+        <p class="PARA">
+          <span>→</span><b>Principal (P):</b> The starting amount (deposit,
+          investment, or loan).
+        </p>
+        <p class="PARA">
+          <span>→</span><b>Rate (R):</b> The annual interest rate (e.g., 5% =
+          0.05).
+        </p>
+        <p class="PARA">
+          <span>→</span><b>Time (T):</b> How long the money is invested or
+          borrowed (in years or months).
+        </p>
+      </div>
+
+      <p class="PARA">
+        Depending on the situation, the calculator applies different formulas:
+      </p>
+
+      <h3 class="SubHeading">Simple Interest (Straight-Line Growth)</h3>
+      <p class="PARA">
+        <b>Formula:</b
+        ><span>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+            <mi>A</mi>
+            <mo>=</mo>
+            <mi>P</mi>
+            <mo>&#xD7;</mo>
+            <mo>(</mo>
+            <mn>1</mn>
+            <mo>+</mo>
+            <mfrac>
+              <mi>R</mi>
+              <mi>n</mi>
+            </mfrac>
+            <mo>)</mo>
+            <msub>
+              <mrow>
+                <mi>n</mi>
+                <mo>&#xD7;</mo>
+                <mi>T</mi>
+              </mrow>
+            </msub>
+          </math></span
+        >
+      </p>
+      <p class="PARA">I = P × R × T</p>
+      <p class="PARA">
+        In words: Multiply your starting money by the rate and the time.
+        Interest does not compound – it’s the same every year.
+      </p>
+
+      <h3 class="SubHeading">Example:</h3>
+      <p class="PARA">Deposit €5,000 at 6% for 3 years:</p>
+      <p class="PARA">
+        I = 5000 × 0.06 × 3 = 900<br />Total = €5,900 (€900 interest earned).
+      </p>
+
+      <h3 class="SubHeading">Compound Interest (Snowball Effect)</h3>
+      <p class="PARA">
+        <b>Formula:</b
+        ><span
+          ><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+            <mi>A</mi>
+            <mo>=</mo>
+            <mn>10000</mn>
+            <mo>&#xD7;</mo>
+            <mo>(</mo>
+            <mn>1</mn>
+            <mo>+</mo>
+            <mfrac>
+              <mn>0.05</mn>
+              <mn>12</mn>
+            </mfrac>
+            <mo>)</mo>
+            <msup>
+              <mn>36</mn>
+            </msup>
+            <mo>=</mo>
+            <mn>11,616</mn>
+          </math></span
+        >
+      </p>
+      <p class="PARA">A = Future Value</p>
+      <p class="PARA">
+        n = number of compounding periods per year (12 = monthly, 4 = quarterly,
+        etc.)
+      </p>
+      <p class="PARA">
+        In words: Your interest earns more interest each period – like a
+        snowball rolling downhill.
+      </p>
+
+      <h3 class="SubHeading">Example:</h3>
+      <p class="PARA">
+        Deposit €10,000 at 5% for 3 years, compounded monthly (n=12):
+      </p>
+      <p class="PARA">Interest earned = €1,616.</p>
+
+      <h3 class="SubHeading">
+        Future Value with Monthly Deposits (Savings Goals)
+      </h3>
+      <p class="PARA">
+        <b>Formula:</b
+        ><span style="font-size: 10px;"
+          ><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+            <mi>FV</mi>
+            <mo>=</mo>
+            <mi>P</mi>
+            <mo>&#xD7;</mo>
+            <msup>
+              <mo>(1 + R &divide; n)</mo>
+              <mrow>
+                <mi>n</mi>
+                <mo>&#xD7;</mo>
+                <mi>T</mi>
+              </mrow>
+            </msup>
+            <mo>+</mo>
+            <mi>PMT</mi>
+            <mo>&#xD7;</mo>
+            <mo>(</mo>
+            <mfrac>
+              <mrow>
+                <msup>
+                  <mo>(1 + R &divide; n)</mo>
+                  <mrow>
+                    <mi>n</mi>
+                    <mo>&#xD7;</mo>
+                    <mi>T</mi>
+                  </mrow>
+                </msup>
+                <mo>&#x2212;</mo>
+                <mn>1</mn>
+              </mrow>
+              <mrow>
+                <mi>R</mi>
+                <mo>&divide;</mo>
+                <mi>n</mi>
+              </mrow>
+            </mfrac>
+            <mo>)</mo>
+          </math></span
+        >
+      </p>
+      <p class="PARA">PMT = fixed monthly deposit</p>
+      <p class="PARA">
+        In words: Each monthly deposit grows separately with compound interest,
+        and the calculator adds them up.
+      </p>
+
+      <h3 class="SubHeading">Example:</h3>
+      <p class="PARA">
+        Save €200/month for 10 years at 5% interest:<br />Future Value = €31,076
+        (includes €7,076 interest).
+      </p>
+
+      <h2 class="HEADING">Quick Recap in Plain Words</h2>
+      <div class="listtopics">
+        <p class="PARA">
+          <span>→</span>Simple Interest → straight line growth (good for short
+          loans).
+        </p>
+        <p class="PARA">
+          <span>→</span>Compound Interest → snowball growth (best for savings &
+          investments).
+        </p>
+        <p class="PARA">
+          <span>→</span>Future Value with Deposits → turbocharged growth (when
+          you add money regularly).
+        </p>
+      </div>
+
+      <h2 class="HEADING">What Is an Interest Calculator?</h2>
+      <p class="PARA">
+        An interest calculator is an online tool that instantly translates
+        financial jargon into clear numbers.
+      </p>
+      <p class="PARA">It answers questions like:</p>
+
+      <div class="listtopics">
+        <p class="PARA">
+          <span>→</span>“If I save €10,000 at 5% for 5 years, how much will I
+          earn?”
+        </p>
+        <p class="PARA">
+          <span>→</span>“How much will my €20,000 loan cost me over 3 years?”
+        </p>
+        <p class="PARA">
+          <span>→</span>“If I add €200 per month, where will I be in 10 years?”
+        </p>
+      </div>
+
+      <p class="PARA">Why it beats manual math or Excel:</p>
+      <div class="listtopics">
+        <p class="PARA"><span>→</span>It removes human error from formulas.</p>
+        <p class="PARA">
+          <span>→</span>It lets you instantly adjust sliders (change rate,
+          years, deposits).
+        </p>
+        <p class="PARA">
+          <span>→</span>It adds extra real-world features like compounding
+          frequency, taxes, or deposits.
+        </p>
+        <p class="PARA">
+          <span>→</span>Think of it as your financial calculator on autopilot.
+        </p>
+      </div>
+
+      <h2 class="HEADING">Step-by-Step Guide: Using the Calculator</h2>
+      <div class="listtopics">
+        <p class="PARA">
+          <span>1.</span>Choose your mode – Simple, Compound, or Monthly
+          Deposit.
+        </p>
+        <p class="PARA">
+          <span>2.</span>Enter your principal (P) – how much you’re starting
+          with.
+        </p>
+        <p class="PARA">
+          <span>3.</span>Enter your interest rate (R) – e.g., 5% = 0.05.
+        </p>
+        <p class="PARA">
+          <span>4.</span>Select the time (T) – in years or months.
+        </p>
+        <p class="PARA">
+          <span>5.</span>Pick compounding frequency – annual, quarterly,
+          monthly, daily.
+        </p>
+        <p class="PARA">
+          <span>6.</span>(Optional) Add monthly deposits (for savings) or tax
+          rate.
+        </p>
+        <p class="PARA">
+          <span>7.</span>Click calculate → the tool gives total interest
+          earned/paid, future value, and breakdowns.
+        </p>
+      </div>
+
+      <h2 class="HEADING">
+        Where Standard Calculators Stop (Competitor Comparison)
+      </h2>
+      <table>
+        <tr>
+          <th>Common Problem</th>
+          <th>How This Calculator Fixes It</th>
+          <th>Why It Matters</th>
+        </tr>
+        <tr>
+          <td>Ignores leap years</td>
+          <td>Automatically adjusts for 366 days</td>
+          <td>More precise yearly interest</td>
+        </tr>
+        <tr>
+          <td>Doesn’t allow deposits</td>
+          <td>Includes monthly/annual deposits</td>
+          <td>Realistic for savers</td>
+        </tr>
+        <tr>
+          <td>No tax option</td>
+          <td>Lets you apply tax %</td>
+          <td>Shows net interest, not just gross</td>
+        </tr>
+        <tr>
+          <td>No loan breakdown</td>
+          <td>Provides amortization schedule</td>
+          <td>See balance drop monthly</td>
+        </tr>
+        <tr>
+          <td>Hides formulas</td>
+          <td>Shows every formula step</td>
+          <td>Transparency builds trust</td>
+        </tr>
+      </table>
+
+      <h2 class="HEADING">Real-Life Examples</h2>
+      <h3 class="SubHeading">Example 1: Simple Savings (Simple Interest)</h3>
+      <p class="PARA">
+        Principal = €5,000<br />Rate = 6% per year<br />Time = 3 years
+      </p>
+      <p class="PARA">
+        Formula: I = 5000 × 0.06 × 3 = 900<br />Total = €5,900 (€900 interest
+        earned).
+      </p>
+
+      <h3 class="SubHeading">Example 2: Compound Growth (Savings Account)</h3>
+      <p class="PARA">
+        Principal = €10,000<br />Rate = 5% per year<br />Time = 3 years<br />Compounded
+        monthly
+      </p>
+      <p class="PARA">
+        Formula: A = 10000 × (1 + 0.05/12)^36 = 10000 × 1.1616 = €11,616<br />Interest
+        earned = €1,616.
+      </p>
+
+      <h3 class="SubHeading">Example 3: Monthly Deposits (Future Value)</h3>
+      <p class="PARA">
+        Starting Principal = €0<br />Rate = 5% annual<br />Deposit =
+        €200/month<br />Time = 10 years
+      </p>
+      <p class="PARA">
+        Future Value = €31,076<br />Deposits = €24,000<br />Interest Earned =
+        €7,076<br />Regular deposits + compounding = bigger pot.
+      </p>
+
+      <h2 class="HEADING">Quick-Look Tables</h2>
+
+      <h3 class="SubHeading">
+        Table 1 – Compound Interest Growth (5% annual, monthly compounding)
+      </h3>
+      <table>
+        <tr>
+          <th>Years</th>
+          <th>Future Value</th>
+          <th>Interest Earned</th>
+        </tr>
+        <tr>
+          <td>1 yr</td>
+          <td>€10,512</td>
+          <td>€512</td>
+        </tr>
+        <tr>
+          <td>5 yr</td>
+          <td>€12,834</td>
+          <td>€2,834</td>
+        </tr>
+        <tr>
+          <td>10 yr</td>
+          <td>€16,470</td>
+          <td>€6,470</td>
+        </tr>
+      </table>
+
+      <h3 class="SubHeading">
+        Table 2 – Effect of Monthly Deposits (€200/month at 5%)
+      </h3>
+      <table>
+        <tr>
+          <th>Years</th>
+          <th>Deposits Made</th>
+          <th>Future Value</th>
+          <th>Interest Earned</th>
+        </tr>
+        <tr>
+          <td>3 yr</td>
+          <td>€7,200</td>
+          <td>€7,841</td>
+          <td>€641</td>
+        </tr>
+        <tr>
+          <td>5 yr</td>
+          <td>€12,000</td>
+          <td>€13,681</td>
+          <td>€1,681</td>
+        </tr>
+        <tr>
+          <td>10 yr</td>
+          <td>€24,000</td>
+          <td>€31,076</td>
+          <td>€7,076</td>
+        </tr>
+      </table>
+
+      <h2 class="HEADING">Adjusting for Inflation & Taxes</h2>
+      <p class="PARA">
+        Interest growth looks impressive on paper, but real returns can shrink
+        once you factor in inflation and taxes.
+      </p>
+      <div class="listtopics">
+        <p class="PARA">
+          <span>→</span><b>Inflation:</b> reduces purchasing power. A 6% return
+          with 3% inflation is only ~2.9% in real terms.
+        </p>
+        <p class="PARA">
+          <span>→</span><b>Taxes:</b> many countries deduct 15–20% on interest
+          earned (e.g., Poland has a 19% tax).
+        </p>
+        <p class="PARA">
+          <span>→</span>Our calculator lets you enter both, so you see net,
+          real-world growth instead of just headline numbers.
+        </p>
+      </div>
+
+      <h2 class="HEADING">Tips for Accurate Results</h2>
+      <div class="listtopics">
+        <p class="PARA">
+          <span>→</span>Always convert rate to decimal (5% = 0.05).
+        </p>
+        <p class="PARA">
+          <span>→</span>Match time units with rate (annual rate → years).
+        </p>
+        <p class="PARA">
+          <span>→</span>Select the correct compounding frequency (monthly
+          deposits = monthly compounding).
+        </p>
+        <p class="PARA">
+          <span>→</span>Factor in tax or inflation for real-world results.
+        </p>
+      </div>
+
+      <h2 class="HEADING">Common Mistakes to Avoid</h2>
+      <table>
+        <tr>
+          <th>Mistake</th>
+          <th>What People Do Wrong</th>
+          <th>Correct Approach</th>
+        </tr>
+        <tr>
+          <td>Annual vs. Monthly Rate</td>
+          <td>Enter 12% annual as 12% monthly</td>
+          <td>Divide by 12 → 1% per month</td>
+        </tr>
+        <tr>
+          <td>Compounding Frequency</td>
+          <td>Ignore monthly/quarterly option</td>
+          <td>Always match bank/loan compounding</td>
+        </tr>
+        <tr>
+          <td>Hidden Fees</td>
+          <td>Forget account/loan fees</td>
+          <td>Add them separately to get real cost</td>
+        </tr>
+        <tr>
+          <td>Inflation Effect</td>
+          <td>Assume future €50,000 = today’s €50,000</td>
+          <td>Subtract inflation % for real value</td>
+        </tr>
+        <tr>
+          <td>Wrong Time Units</td>
+          <td>Enter 60 months as 60 years</td>
+          <td>Always double-check units</td>
+        </tr>
+      </table>
+
+      <div class="conclusion">
+        <h2 class="HEADING">Conclusion</h2>
+        <p class="PARA">
+          An interest calculator is more than a quick math tool – it’s a
+          financial decision-making partner.
+        </p>
+        <p class="PARA">It saves time and eliminates errors.</p>
+        <p class="PARA">
+          It reveals how small changes in rate or deposits transform your
+          savings or loan costs.
+        </p>
+        <p class="PARA">
+          It lets you plan smarter, whether for savings, investments, or debt
+          repayment.
+        </p>
+        <p class="PARA">
+          <b>Remember:</b><br />Simple interest = straight-line growth.<br />Compound
+          interest = exponential growth.<br />Deposits = turbocharged
+          compounding.<br />The sooner you start calculating, the better you can
+          plan your future.
+        </p>
+      </div>
+
+      <div class="faq-header">
+        <h2 class="HEADING">FAQs</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="SubHeading">
+            Q1. Can I calculate a loan repayment schedule?
+          </h3>
+          <p class="PARA">
+            Yes. In loan mode, it shows amortization – how much goes to
+            principal vs. interest each month.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3 class="SubHeading">
+            Q2. Does the calculator include leap years?
+          </h3>
+          <p class="PARA">
+            Yes. It automatically adjusts to 366 days when needed.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3 class="SubHeading">Q3. Can I use it for credit cards?</h3>
+          <p class="PARA">
+            Yes. Just input the balance, APR, and time period. It shows total
+            interest if unpaid.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3 class="SubHeading">Q4. How accurate is it?</h3>
+          <p class="PARA">
+            It follows standard financial formulas with millisecond precision.
+            Real-world results may differ slightly due to bank fees or variable
+            rates.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3 class="SubHeading">
+            Q5. Can I add extra monthly deposits or payments?
+          </h3>
+          <p class="PARA">
+            Yes. There’s a mode for recurring contributions (savings) or
+            repayments (loans).
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3 class="SubHeading">
+            Q6. What compounding frequency should I choose?
+          </h3>
+          <p class="PARA">
+            Pick the one your bank/loan uses (annual, quarterly, monthly,
+            daily). More frequent compounding = more growth (for savers) or more
+            cost (for borrowers).
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3 class="SubHeading">Q7. Does it account for inflation?</h3>
+          <p class="PARA">
+            No, not directly. But you can adjust by lowering the interest rate
+            by the inflation percentage.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3 class="SubHeading">
+            Q8. Is it better to use simple or compound interest?
+          </h3>
+          <p class="PARA">
+            For savings/investments, compounding is always better because of
+            exponential growth. For loans, simple is better because it costs
+            less.
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script src="Index.js"></script>
+</html>

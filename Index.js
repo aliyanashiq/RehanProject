@@ -8,6 +8,7 @@ const routes = {
   "#/BIMCAL": "BIMCAL.html",
   "#/FuelConsumption": "FuelConsumption.html",
   "#/Days-Calculator": "DayCal.html",
+  "#/Interest-Caculator": "Interest.html",
   404: "404.html",
 };
 
@@ -19,7 +20,8 @@ const Routermain = (event) => {
 };
 
 // ✅ LOAD PAGE CONTENT
-const handellocation = async () => {
+const handellocation = async (event) => {
+  if (event) event.preventDefault();
   const path = window.location.hash || "#/";
   const route = routes[path] || routes[404];
 
@@ -30,7 +32,9 @@ const handellocation = async () => {
     // ✅ Reinitialize page-specific JS
     initPageScripts(path);
   } catch (err) {
-    document.getElementById("Content").innerHTML = "<h2>Error loading page.</h2>";
+    document.getElementById("Content").innerHTML =
+      "<h2>Error loading page.</h2>";
+    console.error("Error loading route:", err);
   }
 };
 
@@ -58,7 +62,6 @@ window.selectMenu = function (event) {
 };
 
 // ✅ PAGE-SPECIFIC SCRIPT INITIALIZER
-// ✅ PAGE-SPECIFIC SCRIPT INITIALIZER
 function initPageScripts(path) {
   switch (path) {
     case "#/BIMCAL":
@@ -70,9 +73,13 @@ function initPageScripts(path) {
       break;
 
     case "#/Days-Calculator":
-      // ✅ Initialize both calculators on the same page
+      // Initialize both calculators on the same page
       initDayCalculator();
       initAddSubtractCalculator();
+      break;
+
+    case "#/Interest-Caculator":
+      initcalculateInvestment();
       break;
 
     default:
@@ -93,7 +100,8 @@ function initBMICalculator() {
   const bmiValue = document.querySelector(".bmi-value");
   const statusDiv = document.querySelector(".status");
 
-  if (!(usBtn && metBtn && calcBtn && clearBtn)) return;
+  if (!(usBtn && metBtn && calcBtn && clearBtn && bmiValue && statusDiv))
+    return;
 
   usBtn.addEventListener("click", () => {
     usBtn.classList.add("active");
@@ -124,7 +132,8 @@ function initBMICalculator() {
       const feet = parseFloat(document.getElementById("heightFeet").value);
       const inches = parseFloat(document.getElementById("heightInches").value);
       height = (feet * 12 + inches) * 0.0254;
-      weight = parseFloat(document.getElementById("weightLbs").value) * 0.453592;
+      weight =
+        parseFloat(document.getElementById("weightLbs").value) * 0.453592;
     }
 
     if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
@@ -163,7 +172,8 @@ function initFuelCalculator() {
   const efficiencyUnit = document.getElementById("efficiencyUnit");
   const priceUnit = document.getElementById("priceUnit");
 
-  if (!(calcBtn && clearBtn && distanceUnit && efficiencyUnit && priceUnit)) return;
+  if (!(calcBtn && clearBtn && distanceUnit && efficiencyUnit && priceUnit))
+    return;
 
   calcBtn.addEventListener("click", calculate);
   clearBtn.addEventListener("click", clearFields);
@@ -178,8 +188,13 @@ function initFuelCalculator() {
     const eUnit = efficiencyUnit.value;
     const pUnit = priceUnit.value;
 
-    document.getElementById("distance").placeholder =
-      dUnit === "km" ? "Enter distance (km)" : "Enter distance (miles)";
+    const distanceEl = document.getElementById("distance");
+    const efficiencyEl = document.getElementById("efficiency");
+    const priceEl = document.getElementById("fuelPrice");
+
+    if (distanceEl)
+      distanceEl.placeholder =
+        dUnit === "km" ? "Enter distance (km)" : "Enter distance (miles)";
 
     const effText = {
       mpg: "Enter efficiency (mpg)",
@@ -188,9 +203,10 @@ function initFuelCalculator() {
       Lpermile: "Enter efficiency (L/mile)",
     };
 
-    document.getElementById("efficiency").placeholder = effText[eUnit];
-    document.getElementById("fuelPrice").placeholder =
-      pUnit === "liter" ? "Enter price per liter" : "Enter price per gallon";
+    if (efficiencyEl) efficiencyEl.placeholder = effText[eUnit];
+    if (priceEl)
+      priceEl.placeholder =
+        pUnit === "liter" ? "Enter price per liter" : "Enter price per gallon";
   }
 
   function calculate() {
@@ -203,8 +219,9 @@ function initFuelCalculator() {
     const output = document.getElementById("output");
 
     if (isNaN(distance) || isNaN(efficiency) || isNaN(fuelPrice)) {
-      output.innerHTML =
-        "<p style='color:#f87171;'>⚠️ Please fill in all fields correctly.</p>";
+      if (output)
+        output.innerHTML =
+          "<p style='color:#f87171;'>⚠️ Please fill in all fields correctly.</p>";
       return;
     }
 
@@ -212,11 +229,20 @@ function initFuelCalculator() {
 
     let mpg;
     switch (eUnit) {
-      case "mpg": mpg = efficiency; break;
-      case "L100km": mpg = 235.215 / efficiency; break;
-      case "kml": mpg = efficiency * 2.35215; break;
-      case "Lpermile": mpg = 235.215 / (efficiency * 100); break;
-      default: mpg = efficiency;
+      case "mpg":
+        mpg = efficiency;
+        break;
+      case "L100km":
+        mpg = 235.215 / efficiency;
+        break;
+      case "kml":
+        mpg = efficiency * 2.35215;
+        break;
+      case "Lpermile":
+        mpg = 235.215 / (efficiency * 100);
+        break;
+      default:
+        mpg = efficiency;
     }
 
     const costPerGallon = pUnit === "liter" ? fuelPrice * 3.78541 : fuelPrice;
@@ -226,81 +252,60 @@ function initFuelCalculator() {
     const fuelUnit = pUnit === "liter" ? "liters" : "gallons";
     const totalCost = gallonsUsed * costPerGallon;
 
-    output.innerHTML = `
-      <div style="line-height:1.6;">
-        <p>🚗 <strong>Trip Distance:</strong> ${distance} ${dUnit}</p>
-        <p>⛽ <strong>Fuel Used:</strong> ${fuelUsed.toFixed(2)} ${fuelUnit}</p>
-        <p>💰 <strong>Total Cost:</strong> $${totalCost.toFixed(2)}</p>
-      </div>
-      <hr style="border:1px solid #38bdf8; margin:10px 0;">
-      <p>
-        Summary:<br>
-        Distance: ${distance} ${dUnit}, Efficiency: ${efficiency} ${eUnit}, Fuel Price: $${fuelPrice}/${pUnit}.
-        <br><strong>Estimated Trip Cost: $${totalCost.toFixed(2)}</strong>
-      </p>
-    `;
+    if (output) {
+      output.innerHTML = `
+        <div style="line-height:1.6;">
+          <p>🚗 <strong>Trip Distance:</strong> ${distance} ${dUnit}</p>
+          <p>⛽ <strong>Fuel Used:</strong> ${fuelUsed.toFixed(2)} ${fuelUnit}</p>
+          <p>💰 <strong>Total Cost:</strong> $${totalCost.toFixed(2)}</p>
+        </div>
+        <hr style="border:1px solid #38bdf8; margin:10px 0;">
+        <p>
+          Summary:<br>
+          Distance: ${distance} ${dUnit}, Efficiency: ${efficiency} ${eUnit}, Fuel Price: $${fuelPrice}/${pUnit}.
+          <br><strong>Estimated Trip Cost: $${totalCost.toFixed(2)}</strong>
+        </p>
+      `;
+    }
   }
 
   function clearFields() {
-    document.getElementById("distance").value = "";
-    document.getElementById("efficiency").value = "";
-    document.getElementById("fuelPrice").value = "";
-    document.getElementById("output").innerHTML = "";
+    const distanceEl = document.getElementById("distance");
+    const efficiencyEl = document.getElementById("efficiency");
+    const priceEl = document.getElementById("fuelPrice");
+    const output = document.getElementById("output");
+
+    if (distanceEl) distanceEl.value = "";
+    if (efficiencyEl) efficiencyEl.value = "";
+    if (priceEl) priceEl.value = "";
+    if (output) output.innerHTML = "";
   }
 }
 
 /* -------------------------------------------------
    ✅ DAY CALCULATOR
 --------------------------------------------------*/
-// ================================
-// 🌍 World Holidays
-// ================================
+// worldHolidays is fine as-is (kept your data)
 const worldHolidays = {
   Poland: [
     "01-01", "01-06", "04-09", "05-01", "05-03",
     "05-31", "08-15", "11-01", "11-11", "12-25", "12-26"
   ],
-  United_States: [
-    "01-01", "07-04", "11-11", "11-28", "12-25"
-  ],
-  United_Kingdom: [
-    "01-01", "04-07", "04-10", "05-01", "12-25", "12-26"
-  ],
-  Canada: [
-    "01-01", "07-01", "09-02", "10-14", "12-25", "12-26"
-  ],
-  Germany: [
-    "01-01", "04-07", "04-10", "05-01", "10-03", "12-25", "12-26"
-  ],
-  France: [
-    "01-01", "05-01", "05-08", "07-14", "08-15", "11-01", "12-25"
-  ],
-  India: [
-    "01-26", "08-15", "10-02", "11-12", "12-25"
-  ],
-  Japan: [
-    "01-01", "02-11", "04-29", "05-03", "05-05", "11-03", "12-23"
-  ],
-  Australia: [
-    "01-01", "01-26", "04-25", "12-25", "12-26"
-  ],
-  Brazil: [
-    "01-01", "04-21", "09-07", "10-12", "11-15", "12-25"
-  ],
-  China: [
-    "01-01", "02-10", "04-04", "05-01", "10-01"
-  ],
-  South_Africa: [
-    "01-01", "03-21", "04-27", "05-01", "06-16", "12-25", "12-26"
-  ],
-  Russia: [
-    "01-01", "01-07", "02-23", "05-09", "06-12", "11-04"
-  ]
+  // ... other countries unchanged
+  United_States: ["01-01", "07-04", "11-11", "11-28", "12-25"],
+  United_Kingdom: ["01-01", "04-07", "04-10", "05-01", "12-25", "12-26"],
+  Canada: ["01-01", "07-01", "09-02", "10-14", "12-25", "12-26"],
+  Germany: ["01-01", "04-07", "04-10", "05-01", "10-03", "12-25", "12-26"],
+  France: ["01-01", "05-01", "05-08", "07-14", "08-15", "11-01", "12-25"],
+  India: ["01-26", "08-15", "10-02", "11-12", "12-25"],
+  Japan: ["01-01", "02-11", "04-29", "05-03", "05-05", "11-03", "12-23"],
+  Australia: ["01-01", "01-26", "04-25", "12-25", "12-26"],
+  Brazil: ["01-01", "04-21", "09-07", "10-12", "11-15", "12-25"],
+  China: ["01-01", "02-10", "04-04", "05-01", "10-01"],
+  South_Africa: ["01-01", "03-21", "04-27", "05-01", "06-16", "12-25", "12-26"],
+  Russia: ["01-01", "01-07", "02-23", "05-09", "06-12", "11-04"]
 };
 
-// ================================
-// 🧮 Initialize the Day Calculator
-// ================================
 function initDayCalculator() {
   const holidayList = document.getElementById("holidayList");
   const dayCalcBtn = document.getElementById("DayCalButton");
@@ -379,6 +384,8 @@ function initDayCalculator() {
     }
 
     const output = document.getElementById("DayCaloutput");
+    if (!output) return;
+
     output.innerHTML = `
       <div class="result-block">
         <strong>Difference between ${startDate.toDateString()} and ${endDate.toDateString()}:</strong><br>
@@ -399,10 +406,14 @@ function initDayCalculator() {
   }
 
   function clearForm() {
-    document.getElementById("startDate").value = "";
-    document.getElementById("endDate").value = "";
-    document.getElementById("inclusive").checked = false;
-    document.getElementById("DayCaloutput").innerHTML = "";
+    const startEl = document.getElementById("startDate");
+    const endEl = document.getElementById("endDate");
+    const inclusiveEl = document.getElementById("inclusive");
+    const output = document.getElementById("DayCaloutput");
+    if (startEl) startEl.value = "";
+    if (endEl) endEl.value = "";
+    if (inclusiveEl) inclusiveEl.checked = false;
+    if (output) output.innerHTML = "";
   }
 
   loadHolidays();
@@ -417,7 +428,10 @@ function initAddSubtractCalculator() {
   const calcBtn = document.getElementById("as-calc-btn");
   const clearBtn = document.getElementById("as-clear-btn");
 
-  function addBusinessDays(date, days, holidays) {
+  // Guard: only initialize if DOM elements exist
+  if (!(calcBtn && clearBtn)) return;
+
+  function addBusinessDays(date, days, holidays = []) {
     let count = 0;
     const newDate = new Date(date);
     while (count < Math.abs(days)) {
@@ -445,7 +459,7 @@ function initAddSubtractCalculator() {
       return;
     }
 
-    const holidays = worldHolidays["Poland"];
+    const holidays = worldHolidays["Poland"] || [];
     const startDate = new Date(startInput);
     const direction = operation === "subtract" ? -1 : 1;
     const totalDays = days + weeks * 7;
@@ -460,33 +474,190 @@ function initAddSubtractCalculator() {
       resultDate.setDate(resultDate.getDate() + totalDays * direction);
     }
 
-    document.getElementById("as-result").innerHTML = `
-      <div class="result-block">
-        <strong>Starting from:</strong> ${startDate.toDateString()}<br>
-        <strong>Resulting Date:</strong> ${resultDate.toDateString()}<br>
-        ${
-          businessMode
-            ? "<em>Business days calculation (excluding weekends & holidays)</em>"
-            : "<em>Calendar days calculation</em>"
-        }
-      </div>
-    `;
+    const resultEl = document.getElementById("as-result");
+    if (resultEl) {
+      resultEl.innerHTML = `
+        <div class="result-block">
+          <strong>Starting from:</strong> ${startDate.toDateString()}<br>
+          <strong>Resulting Date:</strong> ${resultDate.toDateString()}<br>
+          ${
+            businessMode
+              ? "<em>Business days calculation (excluding weekends & holidays)</em>"
+              : "<em>Calendar days calculation</em>"
+          }
+        </div>
+      `;
+    }
   });
 
   clearBtn.addEventListener("click", () => {
-    document.getElementById("as-start-date").value = "";
-    document.getElementById("as-years").value = 0;
-    document.getElementById("as-months").value = 0;
-    document.getElementById("as-weeks").value = 0;
-    document.getElementById("as-days").value = 0;
-    document.getElementById("as-business").checked = false;
-    document.getElementById("as-result").innerHTML = "";
+    const start = document.getElementById("as-start-date");
+    const years = document.getElementById("as-years");
+    const months = document.getElementById("as-months");
+    const weeks = document.getElementById("as-weeks");
+    const days = document.getElementById("as-days");
+    const business = document.getElementById("as-business");
+    const result = document.getElementById("as-result");
+
+    if (start) start.value = "";
+    if (years) years.value = 0;
+    if (months) months.value = 0;
+    if (weeks) weeks.value = 0;
+    if (days) days.value = 0;
+    if (business) business.checked = false;
+    if (result) result.innerHTML = "";
   });
 }
 
-// Initialize both calculators
-document.addEventListener("DOMContentLoaded", () => {
-  initDayCalculator();
-  initAddSubtractCalculator();
-});
+// Initialize interest calculator in a defensive way
+let chartInstance = null;
+
+
+function initcalculateInvestment() {
+  const calcBtn = document.getElementById("investment-calc-btn");
+  const clearBtn = document.getElementById("investment-clear-btn");
+  const resultsContainer = document.getElementById("results");
+  const scheduleTableBody = document.querySelector("#scheduleTable tbody");
+  const chartCanvas = document.getElementById("investmentChart");
+
+  if (!calcBtn) return;
+
+  function computeAndRender() {
+    const P = parseFloat(document.getElementById("initialInvestment").value) || 0;
+    const annualContribution = parseFloat(document.getElementById("annualContribution").value) || 0;
+    const monthlyContribution = parseFloat(document.getElementById("monthlyContribution").value) || 0;
+    const rate = (parseFloat(document.getElementById("interestRate").value) / 100) || 0;
+    const compound = document.getElementById("compound").value;
+    const years = parseInt(document.getElementById("years").value) || 0;
+    const months = parseInt(document.getElementById("months").value) || 0;
+    const taxRate = (parseFloat(document.getElementById("taxRate").value) / 100) || 0;
+    const inflationRate = (parseFloat(document.getElementById("inflationRate").value) / 100) || 0;
+
+    const totalMonths = years * 12 + months;
+    const totalYears = totalMonths / 12;
+    const totalContributions = annualContribution * years + monthlyContribution * totalMonths;
+    const totalPrincipal = P + totalContributions;
+
+    // --- Separate balances for interest tracking ---
+    let balance = P;
+    let principalBalance = P;
+    let contributionBalance = 0;
+
+    const schedule = [];
+
+    for (let year = 1; year <= years; year++) {
+      // Add annual + monthly contributions
+      let yearlyContribution = annualContribution + (monthlyContribution * 12);
+
+      // Interest on total balance
+      let interestTotal = balance * rate;
+      let tax = interestTotal * taxRate;
+
+      // Add new contributions and interest after tax
+      balance += interestTotal - tax + yearlyContribution;
+
+      // Track separate parts:
+      principalBalance += principalBalance * rate - (principalBalance * rate * taxRate);
+      contributionBalance += yearlyContribution + contributionBalance * rate - (contributionBalance * rate * taxRate);
+
+      schedule.push({
+        year,
+        deposit: (year === 1 ? P : 0) + yearlyContribution,
+        interest: interestTotal,
+        tax,
+        balance
+      });
+    }
+
+    const totalInterest = schedule.reduce((sum, y) => sum + y.interest, 0);
+    const totalTax = schedule.reduce((sum, y) => sum + y.tax, 0);
+    const interestAfterTax = totalInterest - totalTax;
+    const endBalanceAfterTax = totalPrincipal + interestAfterTax;
+    const inflationAdjusted = endBalanceAfterTax / Math.pow(1 + inflationRate, totalYears || 1);
+
+    // Separate interest components
+    const interestInitial = principalBalance - P;
+    const interestContributions = contributionBalance - totalContributions;
+
+    // --- Display results ---
+    if (resultsContainer) resultsContainer.style.display = "block";
+    document.getElementById("endingBalance").innerText = "$" + balance.toFixed(2);
+    document.getElementById("totalPrincipal").innerText = "$" + totalPrincipal.toFixed(2);
+    document.getElementById("totalContributions").innerText = "$" + totalContributions.toFixed(2);
+    document.getElementById("totalInterest").innerText = "$" + totalInterest.toFixed(2);
+    document.getElementById("totalTax").innerText = "$" + totalTax.toFixed(2);
+    document.getElementById("interestAfterTax").innerText = "$" + interestAfterTax.toFixed(2);
+    document.getElementById("inflationAdjusted").innerText = "$" + inflationAdjusted.toFixed(2);
+    document.getElementById("interestInitial").innerText = "$" + interestInitial.toFixed(2);
+    document.getElementById("interestContributions").innerText = "$" + interestContributions.toFixed(2);
+
+    // --- Update schedule table ---
+    if (scheduleTableBody) {
+      scheduleTableBody.innerHTML = "";
+      schedule.forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row.year}</td>
+          <td>$${row.deposit.toFixed(2)}</td>
+          <td>$${row.interest.toFixed(2)}</td>
+          <td>$${row.tax.toFixed(2)}</td>
+          <td>$${row.balance.toFixed(2)}</td>
+        `;
+        scheduleTableBody.appendChild(tr);
+      });
+    }
+
+    // --- Draw chart ---
+    if (chartCanvas && typeof Chart !== "undefined") {
+      const ctx = chartCanvas.getContext("2d");
+      if (chartInstance) chartInstance.destroy();
+
+      chartInstance = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: [
+            "Initial Investment",
+            "Contributions",
+            "Interest on Initial Investment",
+            "Interest on Contributions",
+            "Tax"
+          ],
+          datasets: [{
+            data: [P, totalContributions, interestInitial, interestContributions, totalTax],
+            backgroundColor: ["#1e88e5", "#8bc34a", "#0288d1", "#9ccc65", "#ffb300"]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: "bottom" }
+          }
+        }
+      });
+    }
+  }
+
+  calcBtn.addEventListener("click", computeAndRender);
+
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      const fields = [
+        "initialInvestment", "annualContribution", "monthlyContribution",
+        "interestRate", "years", "months", "taxRate", "inflationRate"
+      ];
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+      });
+
+      if (resultsContainer) resultsContainer.style.display = "none";
+      if (scheduleTableBody) scheduleTableBody.innerHTML = "";
+      if (chartInstance) {
+        chartInstance.destroy();
+        chartInstance = null;
+      }
+    });
+  }
+}
 

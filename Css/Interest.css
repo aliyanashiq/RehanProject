@@ -1,0 +1,250 @@
+.containerInterest {
+    
+    
+      max-width: 100%;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .calportion{
+      height: 90vh;
+      display: flex;
+      flex-direction: row;
+      gap: 25px;
+    }
+
+    .cal-box{
+        /* flex-basis: 60%; */
+        width: 60%;
+    }
+    .cal-box h1{
+        font-size: 35px;
+        font-weight: bold;
+        color: #1C6EA4;
+    }
+    .cal-box h3{
+        font-size: 25px;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    label {
+      display: block;
+  margin-bottom: .3rem;
+  font-size: .9rem;
+  font-weight: bold;
+  color: #05060f99;
+  transition: color .3s cubic-bezier(.25,.01,.25,1) 0s;
+    }
+
+    input, select {
+      width: 100%;
+  height: 44px;
+  background-color: #05060f0a;
+  border-radius: .5rem;
+  padding: 0 1rem;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
+    }
+
+    .input:hover, .input:focus, .input-group:hover .input {
+  outline: none;
+  border-color: #05060f;
+}
+
+.input-group:hover .label, .input:focus {
+  color: #05060fc2;
+}
+
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background: #1C6EA4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .results-box {
+        /* flex-basis: 35%; */
+        width: 35%;
+      margin-top: 30px;
+      background: #dce7ef;
+      border-left: 6px solid #1C6EA4;
+      padding: 20px;
+    }
+    .row-input{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .result-item {
+      margin: 8px 0;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .value {
+      float: right;
+      color: #000;
+    }
+
+    .highlight {
+      color: #1a8b1a;
+      font-weight: bold;
+    }
+    
+
+    .chart-container {
+  margin-top: 20px;
+  width: 100%;
+  height: 300px;
+}
+
+
+
+.article-section {
+   
+    padding: 20px;
+    border-radius: 10px;
+    
+}
+.HEADING{
+  color: #1C6EA4;
+  border-left: 5px solid #3498db;
+  padding-left: 12px;
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.PARA {
+  padding-top: 8px;
+  padding-left: 25px;
+  font-size: 16px;
+  color: #555;
+}
+ .PARA span{
+  margin-top: 20px;
+  padding-left: 10px;
+  color: #3498db;
+font-weight: bold;
+}
+.listtopics {
+  margin: 15px 0;
+  padding-left: 1.2rem;
+}
+.listtopics span{
+  padding-left: 20px;
+  color: #3498db;
+}
+.SubHeading {
+  position: relative;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a5276;
+  margin: 20px 0 10px;
+  padding-left: 12px;
+}
+.HeadH4 {
+  color: #1a5276;
+  margin: 15px 0 5px;
+  font-size: 16px;
+}
+table {
+  width: 97%;
+  margin-top: 15px;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  background: #fff;
+}
+
+th, td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background-color: #3498db;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+
+tr:hover {
+  background-color: #eaf6ff;
+  transition: 0.3s ease;
+}
+
+
+@media screen and (max-width: 768px){
+.results-box {
+
+    padding: 12px;
+}
+.calportion {
+    height: 105vh;
+    display: flex
+;
+    flex-direction: row;
+    gap: 10px;
+}
+input, select {
+    width: 87%;
+}
+.cal-box{
+  width: 56%;
+}
+.results-box {
+    /* flex-basis: 35%; */
+    width: 46%;
+}
+}
+@media screen and (max-width: 400px){
+      .calportion {
+        height: 125vh;
+        display: flex
+;
+        flex-direction: column;
+      }
+      .cal-box{
+  width: 100%;
+}
+.results-box {
+    /* flex-basis: 35%; */
+    width: 100%;
+}
+table {
+  width: 97%;
+  margin-top: 15px;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  background: #fff;
+}
+th, td {
+  padding: 4px 6px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background-color: #3498db;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+}
