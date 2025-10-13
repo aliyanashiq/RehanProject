@@ -1,11 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Css/CaloriesCal.css" />
+    <title>Calorie Calculator</title>
+  </head>
+  <body>
+    <div class="calculator-Calories-container">
+      <div class="calories-cal-section">
+        <h1 class="calculator-title">Calorie Calculator: How It Works and Why It’s Essential for Your Health</h1>
+
+        <div class="form-group">
+          <label for="gender" class="label">Gender</label>
+          <select id="gender" class="input-select">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="age" class="label">Age (years)</label>
+          <input
+            type="number"
+            id="age"
+            class="input-field"
+            placeholder="e.g. 25"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="weight" class="label">Weight (kg)</label>
+          <input
+            type="number"
+            id="weight"
+            class="input-field"
+            placeholder="e.g. 70"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="height" class="label">Height (cm)</label>
+          <input
+            type="number"
+            id="height"
+            class="input-field"
+            placeholder="e.g. 175"
+          />
+        </div>
+
+        <button class="calculate-btn" id="CaloriesCal">Calculate</button>
+      </div>
+
+      <div id="results" class="results-box"></div>
+    </div>
+    <section class="article-section">
+  <h2 class="HEADING">How Does a Calorie Calculator Work?</h2>
+  <p class="PARA">
+    A calorie calculator estimates the number of calories your body needs daily to maintain, lose, or gain weight. 
+    It begins by calculating your Basal Metabolic Rate (BMR) — the calories your body burns at rest to sustain vital functions such as breathing and circulation.
+  </p>
+
+  <p class="PARA"><b>The most accurate calculator models use the Mifflin-St Jeor Equation to estimate BMR:</b></p>
+
+  <div class="listtopics">
+    <p class="PARA"><span>→</span><b>BMR (Men)</b> = 10 × weight (kg) + 6.25 × height (cm) − 5 × age (years) + 5</p>
+    <p class="PARA"><span>→</span><b>BMR (Women)</b> = 10 × weight (kg) + 6.25 × height (cm) − 5 × age (years) − 161</p>
+  </div>
+
+  <p class="PARA">
+    Your BMR is then multiplied by an Activity Factor reflecting your average daily movement level:
+  </p>
+
+  <div class="listtopics">
+    <p class="PARA"><span>→</span>Sedentary (little or no exercise): BMR × 1.2</p>
+    <p class="PARA"><span>→</span>Lightly active (light exercise 1–3 days/week): BMR × 1.375</p>
+    <p class="PARA"><span>→</span>Moderately active (moderate exercise 3–5 days/week): BMR × 1.55</p>
+    <p class="PARA"><span>→</span>Very active (hard exercise 6–7 days/week): BMR × 1.725</p>
+    <p class="PARA"><span>→</span>Extra active (very hard physical job or training): BMR × 1.9</p>
+  </div>
+
+  <p class="PARA">
+    The result is your Total Daily Energy Expenditure (TDEE) — the estimated calories you burn daily including all activities.
+  </p>
+
+  <h2 class="HEADING">What is TDEE?</h2>
+  <p class="PARA">
+    Your Total Daily Energy Expenditure (TDEE) is the complete number of calories your body burns in a day, not just at rest. It includes:
+  </p>
+
+  <div class="listtopics">
+    <p class="PARA"><span>→</span><b>BMR (Basal Metabolic Rate):</b> Energy needed to keep your body alive (breathing, heartbeat, digestion, etc.).</p>
+    <p class="PARA"><span>→</span><b>Physical Activity:</b> Workouts, walking, household chores, etc.</p>
+    <p class="PARA"><span>→</span><b>Thermic Effect of Food (TEF):</b> Calories your body uses just to digest and process food.</p>
+    <p class="PARA"><span>→</span><b>Non-Exercise Activity Thermogenesis (NEAT):</b> Everyday movements like standing, fidgeting, or climbing stairs.</p>
+  </div>
+
+  <p class="PARA">
+    When all of these are added together, you get your true daily burn = TDEE.
+  </p>
+
+  <h3 class="SubHeading">Why TDEE Matters</h3>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span>If you only eat at your BMR, you’ll undereat because it ignores daily activity.</p>
+    <p class="PARA"><span>→</span>TDEE gives a realistic baseline for setting weight goals since it includes rest and movement.</p>
+    <p class="PARA"><span>→</span>It removes guesswork and frustration from calorie planning.</p>
+  </div>
+
+  <h3 class="SubHeading">How to Use TDEE</h3>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span><b>Weight Loss:</b> Eat 10–20% fewer calories than your TDEE.</p>
+    <p class="PARA"><span>→</span><b>Weight Gain:</b> Eat 10–15% more than TDEE.</p>
+    <p class="PARA"><span>→</span><b>Maintenance:</b> Eat close to your TDEE to keep weight stable.</p>
+  </div>
+
+  <h3 class="SubHeading">Simple Analogy</h3>
+  <p class="PARA">
+    Think of your body like a smartphone battery:
+  </p>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span><b>BMR</b> = battery power needed to keep the phone on.</p>
+    <p class="PARA"><span>→</span><b>TDEE</b> = total power used for apps, browsing, videos, etc.</p>
+  </div>
+
+  <h2 class="HEADING">What Is a Calorie Calculator?</h2>
+  <p class="PARA">
+    A calorie calculator is an online tool that translates medical and nutritional data into actionable daily calorie targets personalized to your body and lifestyle.
+  </p>
+
+  <h2 class="HEADING">Macronutrient Breakdown: Beyond Just Calories</h2>
+  <p class="PARA">
+    Counting calories tells you how much to eat, but macronutrients (macros) tell you what kind of food those calories should come from.
+  </p>
+
+  <div class="listtopics">
+    <p class="PARA"><span>→</span><b>Protein (20–30%)</b> — Builds and repairs muscles, supports immunity, and increases satiety.</p>
+    <p class="PARA"><span>→</span><b>Carbohydrates (40–50%)</b> — Primary energy source for brain and muscles.</p>
+    <p class="PARA"><span>→</span><b>Fats (25–35%)</b> — Essential for hormones, brain function, and energy storage.</p>
+  </div>
+
+  <table>
+    <tr><th>Macro</th><th>Example Daily Intake (2000 kcal)</th></tr>
+    <tr><td>Protein</td><td>100 g (400 kcal)</td></tr>
+    <tr><td>Carbohydrates</td><td>250 g (1000 kcal)</td></tr>
+    <tr><td>Fats</td><td>65 g (600 kcal)</td></tr>
+  </table>
+
+  <h2 class="HEADING">Calorie Calculator for Different Goals</h2>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span><b>Weight Loss:</b> 500–750 kcal deficit/day (0.5–1 kg loss per week).</p>
+    <p class="PARA"><span>→</span><b>Muscle Gain:</b> 300–500 kcal surplus/day + resistance training.</p>
+    <p class="PARA"><span>→</span><b>Maintenance:</b> Match intake with TDEE for stability.</p>
+  </div>
+
+  <h3 class="SubHeading">Example Calculation</h3>
+  <table>
+    <tr><th>Parameter</th><th>Value</th></tr>
+    <tr><td>Age</td><td>30 years</td></tr>
+    <tr><td>Gender</td><td>Female</td></tr>
+    <tr><td>Weight</td><td>60 kg</td></tr>
+    <tr><td>Height</td><td>165 cm</td></tr>
+    <tr><td>Activity</td><td>Moderately Active</td></tr>
+    <tr><td>BMR</td><td>1380.25 kcal/day</td></tr>
+    <tr><td>TDEE</td><td>2139 kcal/day</td></tr>
+    <tr><td>Weight Loss Target</td><td>1639 kcal/day</td></tr>
+  </table>
+
+  <h2 class="HEADING">Factors That Influence Accuracy</h2>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span>Age – metabolism slows with age.</p>
+    <p class="PARA"><span>→</span>Gender – men usually have higher BMR.</p>
+    <p class="PARA"><span>→</span>Body composition – more muscle = higher burn.</p>
+    <p class="PARA"><span>→</span>Lifestyle habits – stress, sleep, movement.</p>
+    <p class="PARA"><span>→</span>Medical conditions – thyroid, PCOS, etc.</p>
+  </div>
+
+  <h2 class="HEADING">Tips for Accurate Results</h2>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span>Provide up-to-date weight, height, age, and activity level.</p>
+    <p class="PARA"><span>→</span>Be honest about your activity level.</p>
+    <p class="PARA"><span>→</span>Adjust calorie targets gradually for sustainable change.</p>
+    <p class="PARA"><span>→</span>Combine with regular exercise and healthy eating for best results.</p>
+  </div>
+
+  <h2 class="HEADING">Limitations of Calorie Calculators</h2>
+  <div class="listtopics">
+    <p class="PARA"><span>→</span>Don’t track micronutrients (vitamins & minerals).</p>
+    <p class="PARA"><span>→</span>Assume average absorption; digestion varies.</p>
+    <p class="PARA"><span>→</span>Can’t account for daily energy fluctuations.</p>
+    <p class="PARA"><span>→</span>Not a medical substitute — consult a professional if needed.</p>
+  </div>
+
+  <div class="conclusion">
+    <h2 class="HEADING">Conclusion</h2>
+    <p class="PARA">
+      A calorie calculator is more than just a number-crunching tool. It’s a practical guide to understanding your body’s energy needs. 
+      By calculating your BMR and TDEE, it helps you connect food, activity, and weight management effectively.
+    </p>
+  </div>
+
+  <div class="faq-header">
+    <h2 class="HEADING">Frequently Asked Questions</h2>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <h3 class="SubHeading">Q1. Can this calculator be used for weight loss planning?</h3>
+      <p class="PARA">Yes, by adjusting your calorie intake below your TDEE, you can create a deficit for weight loss.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="SubHeading">Q2. Does the calculator consider body composition?</h3>
+      <p class="PARA">It estimates calorie needs based on general formulas. For precise analysis, consult a healthcare professional.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="SubHeading">Q3. Can it be used for pregnancy?</h3>
+      <p class="PARA">Pregnancy calorie needs vary significantly; consult a healthcare provider for specialized guidance.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="SubHeading">Q4. How accurate are these calculations?</h3>
+      <p class="PARA">They’re based on validated formulas and population averages; individual needs may vary.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="SubHeading">Q5. Should I recalculate after weight loss or gain?</h3>
+      <p class="PARA">Yes. Every 4–6 weeks, update your weight and activity level to stay accurate.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="SubHeading">Q6. Does sleep or stress affect calorie needs?</h3>
+      <p class="PARA">Indirectly, yes. Poor sleep and chronic stress affect hormones that influence hunger and metabolism.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="SubHeading">Q7. What if I stop losing weight even in a deficit?</h3>
+      <p class="PARA">Plateaus are normal. Adjust calories slightly or increase activity.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="SubHeading">Q8. Can teenagers or children use a calorie calculator?</h3>
+      <p class="PARA">Not independently. Their needs change quickly, so guidance from a healthcare professional is essential.</p>
+    </div>
+  </div>
+
+</section>
+
+
+    <script src="Index.js"></script>
+  </body>
 </html>

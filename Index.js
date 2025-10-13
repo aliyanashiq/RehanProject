@@ -9,6 +9,7 @@ const routes = {
   "#/FuelConsumption": "FuelConsumption.html",
   "#/Days-Calculator": "DayCal.html",
   "#/Interest-Caculator": "Interest.html",
+  "#/Calorie-Calculator":"CaloriesCal.html",
   404: "404.html",
 };
 
@@ -80,6 +81,10 @@ function initPageScripts(path) {
 
     case "#/Interest-Caculator":
       initcalculateInvestment();
+      break;
+
+    case "#/Calorie-Calculator":
+      initcalculateCalories();
       break;
 
     default:
@@ -509,7 +514,9 @@ function initAddSubtractCalculator() {
   });
 }
 
+// ==================================================
 // Initialize interest calculator in a defensive way
+// ==================================================
 let chartInstance = null;
 
 
@@ -660,4 +667,142 @@ function initcalculateInvestment() {
     });
   }
 }
+
+// ====================================================
+// Caloreis Calculator
+// ====================================================
+
+/* -------------------------------------------------
+   ✅ CALORIE CALCULATOR
+--------------------------------------------------*/
+function initcalculateCalories() {
+  const calcBtn = document.getElementById("CaloriesCal");
+  const resultsDiv = document.getElementById("results");
+
+  if (!calcBtn || !resultsDiv) return;
+
+  // Hide results initially
+  resultsDiv.style.display = "none";
+
+  calcBtn.addEventListener("click", () => {
+    const gender = document.getElementById("gender")?.value;
+    const age = parseFloat(document.getElementById("age")?.value);
+    const weight = parseFloat(document.getElementById("weight")?.value);
+    const height = parseFloat(document.getElementById("height")?.value);
+
+    if (!gender || isNaN(age) || isNaN(weight) || isNaN(height)) {
+      resultsDiv.innerHTML = `<p class="error-msg">⚠️ Please fill out all fields correctly.</p>`;
+      resultsDiv.style.display = "block";
+      resultsDiv.classList.add("show");
+      return;
+    }
+
+    // Step 1: Calculate BMR (Mifflin–St Jeor)
+      let BMR;
+      if (gender === "male") {
+        BMR = 10 * weight + 6.25 * height - 5 * age + 5;
+      } else {
+        BMR = 10 * weight + 6.25 * height - 5 * age - 161;
+      }
+
+      // Step 2: Activity multipliers
+      const activities = [
+        { name: "Sedentary (little or no exercise)", factor: 1.2 },
+        { name: "Light (exercise 1–3 days/week)", factor: 1.375 },
+        { name: "Moderate (exercise 3–5 days/week)", factor: 1.55 },
+        { name: "Very active (exercise 6–7 days/week)", factor: 1.725 },
+        { name: "Extra active (hard physical job or training)", factor: 1.9 }
+      ];
+
+      // Step 3: Build result tables
+      let html = `<h3>Your BMR: ${BMR.toFixed(0)} kcal/day</h3>`;
+      html += `<p>This is your resting calorie burn (no activity). Below are your calorie needs for each activity level:</p>`;
+      html += `<table>
+        <tr>
+          <th>Activity Level</th>
+          <th>Maintain Weight</th>
+          <th>Mild Weight Loss (10%)</th>
+          <th>Weight Loss (20%)</th>
+          <th>Extreme Loss (39%)</th>
+          <th>Weight Gain (+10%)</th>
+        </tr>`;
+
+      activities.forEach(a => {
+        const maintain = BMR * a.factor;
+        const mildLoss = maintain * 0.9;
+        const weightLoss = maintain * 0.8;
+        const extremeLoss = maintain * 0.61;
+        const gain = maintain * 1.1;
+
+        html += `<tr>
+          <td>${a.name}</td>
+          <td>${maintain.toFixed(0)}</td>
+          <td>${mildLoss.toFixed(0)}</td>
+          <td>${weightLoss.toFixed(0)}</td>
+          <td>${extremeLoss.toFixed(0)}</td>
+          <td>${gain.toFixed(0)}</td>
+        </tr>`;
+      });
+
+      html += `</table>`;
+
+      // Step 4: Weight loss per week estimate
+      html += `<h3>Estimated Weight Loss per Week (Based on Activity)</h3>
+        <table>
+          <tr><th>Activity Level</th><th>Weight Lost per Week (lbs)</th></tr>
+          <tr><td>Exercise 1–3 times/week</td><td>≈ 4.2 lb</td></tr>
+          <tr><td>Exercise 4–5 times/week</td><td>≈ 6.4 lb</td></tr>
+          <tr><td>Daily exercise or intense 3–4 times/week</td><td>≈ 8.4 lb</td></tr>
+          <tr><td>Intense exercise 6–7 times/week</td><td>≈ 12.6 lb</td></tr>
+          <tr><td>Very intense daily / physical job</td><td>≈ 16.8 lb</td></tr>
+        </table>`;
+
+      // Step 5: Zigzag diet explanation and schedules
+      html += `
+        <h3>Zigzag Calorie Cycling (Zigzag Diet)</h3>
+        <p>
+          As you keep a low-calorie diet, your body will likely adapt to the new, lower energy environment, which can lead to a plateau in your progress.
+          <br><br>
+          Zigzag calorie cycling, also known as a "zigzag diet," is a method of calorie consumption that can potentially help you overcome this plateau and get you back on track to meeting your goals.
+        </p>
+        
+        <h3>Zigzag Diet Schedule 1</h3>
+        <table>
+          <tr><th>Day</th><th>Mild Weight Loss</th><th>Weight Loss</th></tr>
+          <tr><td>Sunday</td><td>2,004 Calories</td><td>1,514 Calories</td></tr>
+          <tr><td>Monday</td><td>1,654 Calories</td><td>1,500 Calories</td></tr>
+          <tr><td>Tuesday</td><td>1,654 Calories</td><td>1,500 Calories</td></tr>
+          <tr><td>Wednesday</td><td>1,654 Calories</td><td>1,500 Calories</td></tr>
+          <tr><td>Thursday</td><td>1,654 Calories</td><td>1,500 Calories</td></tr>
+          <tr><td>Friday</td><td>1,654 Calories</td><td>1,500 Calories</td></tr>
+          <tr><td>Saturday</td><td>2,004 Calories</td><td>1,514 Calories</td></tr>
+        </table>
+
+        <h3>Zigzag Diet Schedule 2</h3>
+        <table>
+          <tr><th>Day</th><th>Mild Weight Loss</th><th>Weight Loss</th></tr>
+          <tr><td>Sunday</td><td>1,504 Calories</td><td>1,500 Calories</td></tr>
+          <tr><td>Monday</td><td>1,671 Calories</td><td>1,503 Calories</td></tr>
+          <tr><td>Tuesday</td><td>1,837 Calories</td><td>1,505 Calories</td></tr>
+          <tr><td>Wednesday</td><td>2,004 Calories</td><td>1,508 Calories</td></tr>
+          <tr><td>Thursday</td><td>1,921 Calories</td><td>1,507 Calories</td></tr>
+          <tr><td>Friday</td><td>1,754 Calories</td><td>1,504 Calories</td></tr>
+          <tr><td>Saturday</td><td>1,587 Calories</td><td>1,501 Calories</td></tr>
+        </table>
+      `;
+
+
+    // ✅ Show results
+    resultsDiv.innerHTML = html;
+    resultsDiv.style.display = "block";
+    resultsDiv.classList.add("show");
+  });
+}
+
+
+
+
+
+
+
 

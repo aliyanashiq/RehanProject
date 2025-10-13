@@ -1,0 +1,339 @@
+
+
+/* ---------- Calculator Box ---------- */
+.calculator-Calories-container  {
+  display: flex;
+  flex-direction: row;
+gap: 30px;
+  background: #fff;
+  width: 100%;
+  
+  padding: 30px 40px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+.calories-cal-section{
+  width: 40%;
+}
+
+/* ---------- Title ---------- */
+.calculator-title {
+  text-align: center;
+  color: #3498db;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ---------- Inputs ---------- */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+}
+
+.input-field,
+.input-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-field:focus,
+.input-select:focus {
+  border-color: #3498db;
+}
+
+/* ---------- Button ---------- */
+.calculate-btn {
+  width: 100%;
+  padding: 12px;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.calculate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(75, 108, 183, 0.4);
+}
+
+/* ---------- Results Box ---------- */
+.results-box {
+  width: 60%;
+  margin-top: 30px;
+  padding: 20px;
+
+  transition: opacity 0.4s ease;
+}
+
+
+
+/* Heading Styles */
+#results h3 {
+  margin-top: 20px;
+  color: #333;
+  font-size: 20px;
+  font-weight: 600;
+  border-left: 5px solid #3498db;
+  padding-left: 10px;
+}
+
+/* Paragraphs */
+#results p {
+  font-size: 15px;
+  color: #555;
+  margin: 10px 0 20px;
+}
+
+/* Error Message */
+.error-msg {
+  background-color: #ffe8e8;
+  color: #d93025;
+  padding: 10px 15px;
+  border-left: 5px solid #d93025;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  animation: shake 0.3s ease-in-out;
+}
+
+/* ===== Tables ===== */
+#results table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#results th,
+#results td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+#results th {
+  background-color: #3498db;
+  color: #fff;
+  font-weight: 600;
+}
+
+#results td {
+  background-color: #fafafa;
+  color: #333;
+}
+
+/* Alternate row shading */
+#results tr:nth-child(even) td {
+  background-color: #f3f8ff;
+}
+
+/* Hover effect */
+#results tr:hover td {
+  background-color: #e9f2ff;
+  transition: background-color 0.2s ease;
+}
+
+/* Links inside results */
+#results a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#results a:hover {
+  text-decoration: underline;
+}
+.article-section {
+   
+    padding: 20px;
+    border-radius: 10px;
+    
+}
+.HEADING{
+  color: #1C6EA4;
+  border-left: 5px solid #3498db;
+  padding-left: 12px;
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.PARA {
+  padding-top: 8px;
+  padding-left: 15px;
+  font-size: 16px;
+  color: #555;
+}
+ .PARA span{
+  margin-top: 20px;
+  padding-left: 10px;
+  color: #3498db;
+font-weight: bold;
+}
+.listtopics {
+  margin: 15px 0;
+  padding-left: 1.2rem;
+}
+.listtopics span{
+  padding-left: 20px;
+  color: #3498db;
+}
+.SubHeading {
+  position: relative;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a5276;
+  margin: 20px 0 10px;
+  padding-left: 12px;
+}
+.HeadH4 {
+  color: #1a5276;
+  margin: 15px 0 5px;
+  font-size: 16px;
+}
+table {
+  width: 97%;
+  margin-top: 15px;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  background: #fff;
+}
+
+th, td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background-color: #3498db;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+
+tr:hover {
+  background-color: #eaf6ff;
+  transition: 0.3s ease;
+}
+.conclusion {
+  background: #f4faff;
+  border-left: 5px solid #3498db;
+  padding: 15px 20px;
+  margin-top: 25px;
+  
+}
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .calculator-Calories-container {
+    padding: 30px 17px;
+  }
+  .calculator-title {
+    text-align: left;
+    color: #3498db;
+    margin-bottom: 25px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 0px;
+}
+  #results {
+    padding: 15px;
+  }
+
+  #results table {
+    font-size: 13px;
+  }
+
+  #results th,
+  #results td {
+    padding: 8px;
+  }
+
+  #results h3 {
+    font-size: 18px;
+  }
+}
+@media (max-width: 425px) {
+  .calculator-Calories-container {
+    flex-direction: column;
+    padding: 30px 0px;
+  }
+  .calories-cal-section{
+    padding: 10px;
+  width: 100%;
+}
+  .calculator-title {
+    text-align: left;
+    color: #3498db;
+    margin-bottom: 25px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 0px;
+}
+.results-box {
+  width: 100%;
+  margin-top: 30px;
+  padding: 20px;
+
+  transition: opacity 0.4s ease;
+}
+  #results {
+    padding: 15px;
+  }
+
+  #results table {
+    font-size: 13px;
+  }
+
+  #results th,
+  #results td {
+    padding: 0px;
+  }
+
+  #results h3 {
+    font-size: 18px;
+  }
+}
