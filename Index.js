@@ -86,11 +86,196 @@ function initPageScripts(path) {
     case "#/Calorie-Calculator":
       initcalculateCalories();
       break;
-
+    
+    case "#/":
+      initMathCalculator();
+      break;
+      
     default:
       break;
   }
 }
+
+// =================================================
+//Calculatur
+// ==================================================
+
+
+/* -------------------------------------------------
+   ✅ MATH CALCULATOR
+--------------------------------------------------*/
+function initMathCalculator() {
+  const calcDisplay = document.getElementById("calculation");
+  const resultDisplay = document.getElementById("result");
+  const buttons = document.querySelectorAll(".btn");
+
+  if (!calcDisplay || !resultDisplay || buttons.length === 0) return;
+
+  let calculation = "";
+  let memory = 0;
+  let lastAnswer = 0;
+
+  const degMode = document.getElementById("deg");
+  const radMode = document.getElementById("rad");
+
+  const toRadians = (angle) => (angle * Math.PI) / 180;
+  const factorial = (n) => (n <= 1 ? 1 : n * factorial(n - 1));
+
+  const updateDisplay = () => {
+    calcDisplay.value = calculation;
+  };
+
+  const evaluateExpression = (expr) => {
+    try {
+      expr = expr
+        .replace(/×/g, "*")
+        .replace(/÷/g, "/")
+        .replace(/π/g, "Math.PI")
+        .replace(/e/g, "Math.E")
+        .replace(/√/g, "Math.sqrt")
+        .replace(/\^/g, "**");
+
+      expr = expr
+        .replace(/sin-1\(/g, "Math.asin(")
+        .replace(/cos-1\(/g, "Math.acos(")
+        .replace(/tan-1\(/g, "Math.atan(")
+        .replace(/sin\(/g, degMode?.checked ? "Math.sin(toRadians(" : "Math.sin(")
+        .replace(/cos\(/g, degMode?.checked ? "Math.cos(toRadians(" : "Math.cos(")
+        .replace(/tan\(/g, degMode?.checked ? "Math.tan(toRadians(" : "Math.tan(")
+        .replace(/log\(/g, "Math.log10(")
+        .replace(/ln\(/g, "Math.log(")
+        .replace(/EXP/g, "Math.exp");
+
+      expr = expr.replace(/(\d+)!/g, (_, n) => `factorial(${n})`);
+
+      const result = Function("factorial", "toRadians", `return ${expr}`)(
+        factorial,
+        toRadians
+      );
+      return result;
+    } catch {
+      return "Error";
+    }
+  };
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const op = btn.dataset.op;
+      const func = btn.dataset.func;
+
+      if (op) {
+        calculation += op;
+        updateDisplay();
+      } else if (func) {
+        switch (func) {
+          case "ac":
+            calculation = "";
+            resultDisplay.value = "";
+            updateDisplay();
+            break;
+          case "back":
+            calculation = calculation.slice(0, -1);
+            updateDisplay();
+            break;
+          case "=":
+            if (!calculation.trim()) return;
+            const result = evaluateExpression(calculation);
+            resultDisplay.value = result;
+            lastAnswer = result;
+            break;
+          case "±":
+            calculation = calculation.startsWith("-")
+              ? calculation.slice(1)
+              : "-" + calculation;
+            updateDisplay();
+            break;
+          case "rnd":
+            calculation += Math.random().toFixed(4);
+            updateDisplay();
+            break;
+          case "ans":
+            calculation += lastAnswer;
+            updateDisplay();
+            break;
+          case "m+":
+            memory += Number(resultDisplay.value) || 0;
+            break;
+          case "m-":
+            memory -= Number(resultDisplay.value) || 0;
+            break;
+          case "mr":
+            calculation += memory;
+            updateDisplay();
+            break;
+          case "pi":
+            calculation += "π";
+            updateDisplay();
+            break;
+          case "e":
+            calculation += "e";
+            updateDisplay();
+            break;
+          case "n!":
+            calculation += "!";
+            updateDisplay();
+            break;
+          case "x^2":
+            calculation += "^2";
+            updateDisplay();
+            break;
+          case "x^3":
+            calculation += "^3";
+            updateDisplay();
+            break;
+          case "x^y":
+            calculation += "^";
+            updateDisplay();
+            break;
+          case "10^x":
+            calculation += "10^";
+            updateDisplay();
+            break;
+          case "e^x":
+            calculation += "e^";
+            updateDisplay();
+            break;
+          case "√x":
+            calculation += "√(";
+            updateDisplay();
+            break;
+          case "3√x":
+            calculation += "Math.cbrt(";
+            updateDisplay();
+            break;
+          case "y√x":
+            calculation += "√(";
+            updateDisplay();
+            break;
+          case "ln":
+            calculation += "ln(";
+            updateDisplay();
+            break;
+          case "log":
+            calculation += "log(";
+            updateDisplay();
+            break;
+          case "sin":
+          case "cos":
+          case "tan":
+          case "sin-1":
+          case "cos-1":
+          case "tan-1":
+            calculation += func + "(";
+            updateDisplay();
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  });
+}
+
 
 /* -------------------------------------------------
    ✅ BMI CALCULATOR
@@ -104,6 +289,7 @@ function initBMICalculator() {
   const clearBtn = document.getElementById("clearBtn");
   const bmiValue = document.querySelector(".bmi-value");
   const statusDiv = document.querySelector(".status");
+  const extraResults = document.querySelector(".extra-results"); // <--- Add this div in HTML
 
   if (!(usBtn && metBtn && calcBtn && clearBtn && bmiValue && statusDiv))
     return;
@@ -131,14 +317,13 @@ function initBMICalculator() {
     let height, weight;
 
     if (metBtn.classList.contains("active")) {
-      height = parseFloat(document.getElementById("height").value) / 100;
-      weight = parseFloat(document.getElementById("weight").value);
+      height = parseFloat(document.getElementById("height").value) / 100; // m
+      weight = parseFloat(document.getElementById("weight").value); // kg
     } else {
       const feet = parseFloat(document.getElementById("heightFeet").value);
       const inches = parseFloat(document.getElementById("heightInches").value);
-      height = (feet * 12 + inches) * 0.0254;
-      weight =
-        parseFloat(document.getElementById("weightLbs").value) * 0.453592;
+      height = (feet * 12 + inches) * 0.0254; // convert to meters
+      weight = parseFloat(document.getElementById("weightLbs").value) * 0.453592; // kg
     }
 
     if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
@@ -149,6 +334,8 @@ function initBMICalculator() {
     const bmi = weight / (height * height);
     bmiValue.textContent = `BMI = ${bmi.toFixed(1)}`;
     statusDiv.textContent = getStatus(bmi);
+
+    showAdditionalResults(bmi, height, weight); // 👈 new line
   }
 
   function getStatus(bmi) {
@@ -160,12 +347,51 @@ function initBMICalculator() {
     return "Obesity Class III";
   }
 
+  function showAdditionalResults(bmi, height, weight) {
+    const healthyBMILow = 18.5;
+    const healthyBMIHigh = 25;
+
+    const lowWeight = healthyBMILow * height * height; // kg
+    const highWeight = healthyBMIHigh * height * height; // kg
+
+    // convert healthy weight range to lbs
+    const lowWeightLbs = lowWeight / 0.453592;
+    const highWeightLbs = highWeight / 0.453592;
+
+    // Weight to lose to reach BMI 25
+    const targetWeight = healthyBMIHigh * height * height;
+    const weightToLoseKg = weight - targetWeight;
+    const weightToLoseLbs = weightToLoseKg / 0.453592;
+
+    // BMI Prime
+    const bmiPrime = bmi / healthyBMIHigh;
+
+    // Ponderal Index
+    const ponderalIndex = weight / Math.pow(height, 3);
+
+    extraResults.innerHTML = `
+      <p>Healthy BMI range: ${healthyBMILow} kg/m² - ${healthyBMIHigh} kg/m²</p>
+      <p>Healthy weight for the height: ${lowWeightLbs.toFixed(1)} lbs - ${highWeightLbs.toFixed(1)} lbs</p>
+      ${
+        weightToLoseLbs > 0
+          ? `<p>Lose ${weightToLoseLbs.toFixed(
+              1
+            )} lbs to reach a BMI of 25 kg/m².</p>`
+          : `<p>You are within or below the healthy BMI range.</p>`
+      }
+      <p>BMI Prime: ${bmiPrime.toFixed(2)}</p>
+      <p>Ponderal Index: ${ponderalIndex.toFixed(1)} kg/m³</p>
+    `;
+  }
+
   function clearResults() {
     bmiValue.textContent = "BMI = 0.0";
     statusDiv.textContent = "(Result)";
     document.querySelectorAll("input").forEach((input) => (input.value = ""));
+    if (extraResults) extraResults.innerHTML = ""; // clear new results too
   }
 }
+
 
 /* -------------------------------------------------
    ✅ FUEL CONSUMPTION CALCULATOR
@@ -672,9 +898,7 @@ function initcalculateInvestment() {
 // Caloreis Calculator
 // ====================================================
 
-/* -------------------------------------------------
-   ✅ CALORIE CALCULATOR
---------------------------------------------------*/
+
 function initcalculateCalories() {
   const calcBtn = document.getElementById("CaloriesCal");
   const resultsDiv = document.getElementById("results");

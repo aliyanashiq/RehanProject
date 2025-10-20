@@ -48,6 +48,7 @@
 .BMI{
     display: flex;
     flex-direction: row;
+    gap: 20px;
 }
 
 .form-section {
@@ -122,6 +123,8 @@ button {
     text-align: left;
     font-size: 1.2em;
     padding-left: 20px;
+    background: #dce7ef;
+      border-left: 6px solid #1C6EA4;
 }
 
 .bmi-value {

@@ -7,7 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="./Css/Login.css">
   <style type="text/tailwindcss">
-  
+
 
   </style>
 
@@ -16,8 +16,7 @@
 <body>
   <div>
     <header class="bg-[#1C6EA4]">
-      <nav aria-label="Global"
-        class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+      <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
         <div class="flex lg:flex-1">
           <a href="/" class="-m-1.5 p-1.5">
             <div class="text-4xl font-bold">
@@ -28,39 +27,32 @@
 
         <!-- Mobile Menu Button -->
         <div class="flex lg:hidden">
-          <button id="OpenMenu"
-            class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white">
+          <button id="OpenMenu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white">
             <span class="sr-only">Open main menu</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              class="size-6">
-              <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
-                stroke-linejoin="round" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6">
+              <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
         </div>
 
         <!-- Desktop Menu -->
-        <div class="hidden lg:flex lg:gap-x-12">
-          <a href="#/finance" onclick="route(event)"
-            class="relative inline-block text-[18px] font-semibold text-white uppercase 
+        <div class="hidden lg:flex lg:gap-x-6">
+          <a href="#/finance" onclick="route(event)" class="relative inline-block text-[16px] font-semibold text-white uppercase 
             after:content-[''] after:absolute after:left-0 after:bottom-[-5px] after:w-0 after:h-[2px] 
             after:bg-white after:transition-all after:duration-300 hover:after:w-full">
             Financial
           </a>
-          <a href="#/fitness" onclick="route(event)"
-            class="relative inline-block text-[18px] font-semibold text-white uppercase 
+          <a href="#/fitness" onclick="route(event)" class="relative inline-block text-[16px] font-semibold text-white uppercase 
             after:content-[''] after:absolute after:left-0 after:bottom-[-5px] after:w-0 after:h-[2px] 
             after:bg-white after:transition-all after:duration-300 hover:after:w-full">
             Fitness & Health
           </a>
-          <a href="#/math" onclick="route(event)"
-            class="relative inline-block text-[18px] font-semibold text-white uppercase 
+          <a href="#/math" onclick="route(event)" class="relative inline-block text-[16px] font-semibold text-white uppercase 
             after:content-[''] after:absolute after:left-0 after:bottom-[-5px] after:w-0 after:h-[2px] 
             after:bg-white after:transition-all after:duration-300 hover:after:w-full">
             Math
           </a>
-          <a href="#/other" onclick="route(event)"
-            class="relative inline-block text-[18px] font-semibold text-white uppercase 
+          <a href="#/other" onclick="route(event)" class="relative inline-block text-[16px] font-semibold text-white uppercase 
             after:content-[''] after:absolute after:left-0 after:bottom-[-5px] after:w-0 after:h-[2px] 
             after:bg-white after:transition-all after:duration-300 hover:after:w-full">
             Other
@@ -69,15 +61,12 @@
       </nav>
 
       <!-- Mobile Menu (hidden by default) -->
-      <div id="mobile-menu"
-        class="hidden lg:hidden fixed inset-0 z-50 bg-gray-900 p-6 overflow-y-auto">
+      <div id="mobile-menu" class="hidden lg:hidden fixed inset-0 z-50 bg-gray-900 p-6 overflow-y-auto">
         <div class="flex items-center justify-between">
           <a href="/" class="text-3xl font-bold text-white">Calculator<span class="text-[#c6f68d]">.net</span></a>
-          <button id="closeMenu"
-            class="p-2 rounded-md text-white">
+          <button id="closeMenu" class="p-2 rounded-md text-white">
             <span class="sr-only">Close menu</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              class="size-6">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6">
               <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
@@ -99,32 +88,32 @@
             class="block rounded-lg px-3 py-2 text-lg font-semibold text-white hover:bg-white/10 uppercase">
             Other
           </a>
-          
+
         </div>
       </div>
     </header>
 
     <main id="Content"></main>
-     <footer>
-    <div class="footer-links">
-      <a href="#">About</a>
-      <a href="#">Blog</a>
-      <a href="#">Jobs</a>
-      <a href="#">Press</a>
-      <a href="#">Accessibility</a>
-      <a href="#">Partners</a>
-    </div>
+    <footer>
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Jobs</a>
+        <a href="#">Press</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Partners</a>
+      </div>
 
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-x-twitter"></i></a>
-      <a href="#"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
-    </div>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
 
-    <p class="copyright">© 2024 Your Company, Inc. All rights reserved.</p>
-  </footer>
+      <p class="copyright">© 2024 Your Company, Inc. All rights reserved.</p>
+    </footer>
   </div>
   <script type="module" src="Index.js"></script>
 </body>

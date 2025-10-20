@@ -77,6 +77,8 @@ gap: 30px;
   width: 60%;
   margin-top: 30px;
   padding: 20px;
+   background: #dce7ef;
+      border-left: 6px solid #1C6EA4;
 
   transition: opacity 0.4s ease;
 }
