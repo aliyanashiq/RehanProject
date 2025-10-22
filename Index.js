@@ -23,21 +23,35 @@ const Routermain = (event) => {
 // ✅ LOAD PAGE CONTENT
 const handellocation = async (event) => {
   if (event) event.preventDefault();
+
   const path = window.location.hash || "#/";
   const route = routes[path] || routes[404];
+  const loader = document.getElementById("loader");
+  const content = document.getElementById("Content");
+
+  // Show loader
+  loader.classList.remove("hidden");
+  content.innerHTML = ""; // clear old content
 
   try {
-    const html = await fetch(route).then((res) => res.text());
-    document.getElementById("Content").innerHTML = html;
+    // Simulate loading delay (3 seconds)
+    setTimeout(async () => {
+      const html = await fetch(route).then((res) => res.text());
+      content.innerHTML = html;
 
-    // ✅ Reinitialize page-specific JS
-    initPageScripts(path);
+      // Hide loader after content loads
+      loader.classList.add("hidden");
+
+      // Initialize page-specific scripts
+      initPageScripts(path);
+    }, 3000);
   } catch (err) {
-    document.getElementById("Content").innerHTML =
-      "<h2>Error loading page.</h2>";
+    loader.classList.add("hidden");
+    content.innerHTML = "<h2>Error loading page.</h2>";
     console.error("Error loading route:", err);
   }
 };
+
 
 window.addEventListener("hashchange", handellocation);
 handellocation();
